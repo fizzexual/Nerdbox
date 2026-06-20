@@ -26,7 +26,8 @@
   var CATEGORIES = [
     { id: "reflex", name: "reflex" },
     { id: "memory", name: "memory" },
-    { id: "knowledge", name: "knowledge" }
+    { id: "knowledge", name: "knowledge" },
+    { id: "puzzle", name: "puzzles" }
   ];
 
   function clearGame() {

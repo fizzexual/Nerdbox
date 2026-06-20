@@ -37,6 +37,16 @@ window.NERDBOX = (function () {
     return false;
   }
 
+  // inject a game's CSS once (keeps each game file self-contained)
+  function injectStyle(id, css) {
+    var sid = "nb-style-" + id;
+    if (document.getElementById(sid)) return;
+    var s = document.createElement("style");
+    s.id = sid;
+    s.textContent = css;
+    document.head.appendChild(s);
+  }
+
   // small shared helpers for games
   var util = {
     el: function (tag, cls, html) {
@@ -62,6 +72,7 @@ window.NERDBOX = (function () {
     get: get,
     getBest: getBest,
     setBest: setBest,
+    injectStyle: injectStyle,
     util: util
   };
 })();

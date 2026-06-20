@@ -25,16 +25,40 @@ mess around, and see how good you actually are. No sign-up, no backend, no nonse
 
 ## The games
 
-| Game | Category | Test your… |
-| --- | --- | --- |
-| **Reaction Time** | reflex | how fast you click when it turns green |
-| **Aim Trainer** | reflex | speed + precision popping targets |
-| **Sequence Memory** | memory | recalling a growing pattern (Simon) |
-| **Chimp Test** | memory | remembering numbers' positions |
-| **Number Memory** | memory | how many digits you can hold |
-| **Guess the Language** | knowledge | spotting a language from a snippet |
-| **Color Match** | knowledge | finding the odd shade out |
+**⚡ Reflex**
+| Game | Test your… |
+| --- | --- |
+| **Reaction Time** | how fast you click when it turns green |
+| **Aim Trainer** | speed + precision popping 30 targets |
 
+**🧠 Memory**
+| Game | Test your… |
+| --- | --- |
+| **Sequence Memory** | recalling a growing pattern (Simon) |
+| **Chimp Test** | remembering numbers' positions |
+| **Number Memory** | how many digits you can hold |
+
+**📚 Knowledge**
+| Game | Test your… |
+| --- | --- |
+| **Guess the Language** | naming a language from a snippet |
+| **Regex Rumble** | writing a regex that matches the greens, rejects the reds |
+| **Shortcut Sensei** | firing the right keyboard shortcut, fast |
+| **Git Gauntlet** | typing the correct git command for a scenario |
+| **Query Quick** | writing SQL to answer a question (runs in-browser) |
+| **CSS Duel** | recreating a target shape with sliders |
+| **Color Match** | finding the odd shade out |
+
+**🧩 Puzzles**
+| Game | Test your… |
+| --- | --- |
+| **Hexle** | guessing a hex color from warmer/colder hints |
+| **Devle** | Wordle, but with 5-letter dev words |
+| **Dev Connections** | grouping 16 dev terms into 4 hidden sets |
+| **Gate Match** | naming the logic gate behind a truth table |
+| **Lights Out** | turning off every light on the grid |
+
+That's **17 games** (plus a link to the sibling project, [Codemonkey](https://fizzexual.github.io/Codemonkey/)).
 Every game tracks your **personal best** locally (in `localStorage`, private to your device),
 and the whole thing themes itself — 7 palettes, remembered between visits.
 
@@ -57,15 +81,17 @@ hash routing; **each game is a self-contained file** that registers itself with 
 ```
 Nerdbox/
 ├── index.html
-├── css/style.css        # design system + every game's UI
+├── css/style.css        # design system + the core games' UI
 └── js/
     ├── themes.js        # theme registry
-    ├── core.js          # game registry + best-score storage
+    ├── core.js          # game registry + best-score storage + injectStyle()
     ├── app.js           # hub + hash router + theme wiring
-    └── games/
-        ├── reaction.js   aim.js        sequence.js
-        ├── chimp.js      memory.js     guesslang.js
-        └── colormatch.js links.js
+    └── games/           # one file per game, each self-registering
+        ├── reaction.js   aim.js         sequence.js   chimp.js
+        ├── memory.js     guesslang.js   colormatch.js regex.js
+        ├── shortcut.js   git.js         query.js      cssduel.js
+        ├── hexle.js      devle.js       connections.js
+        ├── logicgate.js  lightsout.js   links.js
 ```
 
 ### Adding a game
@@ -73,11 +99,14 @@ Nerdbox/
 Drop a new file in `js/games/`, add a `<script>` tag in `index.html`, and register it:
 
 ```js
+// optional: keep the game self-contained by injecting its own CSS
+NERDBOX.injectStyle("mygame", `.mygame-tile { background: var(--accent); }`);
+
 NERDBOX.register({
   id: "mygame",
   name: "My Game",
   tagline: "what it tests",
-  category: "reflex",        // reflex | memory | knowledge
+  category: "reflex",        // reflex | memory | knowledge | puzzle
   scoreMode: "max",          // "max" (higher better) or "min" (lower better, e.g. ms)
   formatScore: function (v) { return v + " pts"; },
   icon: "<svg>…</svg>",
@@ -88,7 +117,8 @@ NERDBOX.register({
 });
 ```
 
-The hub, best-score tracking, theming, and routing are all handled for you.
+The hub, best-score tracking, theming, and routing are all handled for you. `ctx` gives you
+`util.el/rand/shuffle`, `submitScore(n)`, and `themeColor(var)`.
 
 ## Deployment
 
