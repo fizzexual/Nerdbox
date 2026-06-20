@@ -4,8 +4,9 @@
 
 # 🤓 nerdbox
 
-**A playground of tiny skill-test games.** Reaction, memory, aim, dev trivia — jump in,
-mess around, and see how good you actually are. No sign-up, no backend, no nonsense.
+**A playground of brain-testing mini-games** — reflexes, working memory, attention,
+reasoning, spatial sense, perception, language, and dev knowledge. Jump in, see how sharp
+you actually are, and beat your best. Every game has a quick how-to-play. No sign-up, no backend.
 
 ### [▶ Play it live](https://fizzexual.github.io/Nerdbox/)
 
@@ -23,44 +24,62 @@ mess around, and see how good you actually are. No sign-up, no backend, no nonse
 
 ---
 
-## The games
+## The games — 29 of them, by brain faculty
 
-**⚡ Reflex**
-| Game | Test your… |
-| --- | --- |
-| **Reaction Time** | how fast you click when it turns green |
-| **Aim Trainer** | speed + precision popping 30 targets |
+**⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception
 
-**🧠 Memory**
-| Game | Test your… |
-| --- | --- |
-| **Sequence Memory** | recalling a growing pattern (Simon) |
-| **Chimp Test** | remembering numbers' positions |
-| **Number Memory** | how many digits you can hold |
+**🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory
 
-**📚 Knowledge**
-| Game | Test your… |
-| --- | --- |
-| **Guess the Language** | naming a language from a snippet |
-| **Regex Rumble** | writing a regex that matches the greens, rejects the reds |
-| **Shortcut Sensei** | firing the right keyboard shortcut, fast |
-| **Git Gauntlet** | typing the correct git command for a scenario |
-| **Query Quick** | writing SQL to answer a question (runs in-browser) |
-| **CSS Duel** | recreating a target shape with sliders |
-| **Color Match** | finding the odd shade out |
+**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go
 
-**🧩 Puzzles**
-| Game | Test your… |
-| --- | --- |
-| **Hexle** | guessing a hex color from warmer/colder hints |
-| **Devle** | Wordle, but with 5-letter dev words |
-| **Dev Connections** | grouping 16 dev terms into 4 hidden sets |
-| **Gate Match** | naming the logic gate behind a truth table |
-| **Lights Out** | turning off every light on the grid |
+**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out
 
-That's **17 games** (plus a link to the sibling project, [Codemonkey](https://fizzexual.github.io/Codemonkey/)).
-Every game tracks your **personal best** locally (in `localStorage`, private to your device),
-and the whole thing themes itself — 7 palettes, remembered between visits.
+**👁️ Perception** — Color Match · Hexle · Estimate
+
+**🔤 Language** — Devle · Anagram
+
+**💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
+
+<details>
+<summary>What each one tests</summary>
+
+| Game | Faculty | What it tests |
+| --- | --- | --- |
+| Reaction Time | reflex | simple reaction speed |
+| Aim Trainer | reflex | speed + targeting precision |
+| Time Perception | reflex | your internal clock (no timer to watch) |
+| Number Memory | memory | digit span |
+| Sequence Memory | memory | spatial sequence recall (Simon) |
+| Chimp Test | memory | remembering positions of numbers |
+| N-Back | memory | working memory (2-back) |
+| Visual Memory | memory | recalling a flashed tile pattern |
+| Verbal Memory | memory | recognising words you've seen |
+| Stroop Test | attention | inhibition / interference |
+| Trail Making | attention | task-switching + visual search |
+| Go / No-Go | attention | impulse control |
+| Number Sequence | reasoning | pattern recognition (fluid IQ) |
+| Mental Rotation | reasoning | spatial reasoning |
+| Math Sprint | reasoning | mental arithmetic |
+| Gate Match | reasoning | boolean logic |
+| Lights Out | reasoning | deductive puzzle-solving |
+| Color Match | perception | colour discrimination |
+| Hexle | perception | colour estimation (RGB) |
+| Estimate | perception | numerosity / subitizing |
+| Devle | language | dev-word Wordle |
+| Anagram | language | unscrambling words |
+| Guess the Language | dev | code-reading |
+| Regex Rumble | dev | regular expressions |
+| Shortcut Sensei | dev | editor keyboard shortcuts |
+| Git Gauntlet | dev | git commands |
+| Query Quick | dev | SQL (runs in-browser) |
+| CSS Duel | dev | recreating a CSS shape |
+| Dev Connections | dev | grouping dev terms |
+
+</details>
+
+Every game opens with a **how-to-play** (a one-line description + a worked example), tracks your
+**personal best** locally (in `localStorage`, private to your device), and themes itself — 7 palettes,
+remembered between visits. Plus a link to the sibling project, [Codemonkey](https://fizzexual.github.io/Codemonkey/).
 
 ## Run it locally
 
@@ -85,13 +104,15 @@ Nerdbox/
 └── js/
     ├── themes.js        # theme registry
     ├── core.js          # game registry + best-score storage + injectStyle()
-    ├── app.js           # hub + hash router + theme wiring
-    └── games/           # one file per game, each self-registering
-        ├── reaction.js   aim.js         sequence.js   chimp.js
-        ├── memory.js     guesslang.js   colormatch.js regex.js
-        ├── shortcut.js   git.js         query.js      cssduel.js
-        ├── hexle.js      devle.js       connections.js
-        ├── logicgate.js  lightsout.js   links.js
+    ├── help.js          # how-to-play (description + example) per game
+    ├── app.js           # hub + hash router + theme wiring + how-to-play
+    └── games/           # one self-registering file per game (29 of them)
+        ├── reaction.js  aim.js  timeperception.js  …
+        ├── memory.js  sequence.js  chimp.js  nback.js  visualmemory.js  verbalmemory.js
+        ├── stroop.js  trailmaking.js  gonogo.js
+        ├── numseq.js  rotation.js  mathsprint.js  logicgate.js  lightsout.js
+        ├── colormatch.js  hexle.js  estimate.js  devle.js  anagram.js
+        └── guesslang.js  regex.js  shortcut.js  git.js  query.js  cssduel.js  connections.js
 ```
 
 ### Adding a game

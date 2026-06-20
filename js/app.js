@@ -24,11 +24,22 @@
 
   /* ---------- hub ---------- */
   var CATEGORIES = [
-    { id: "reflex", name: "reflex" },
+    { id: "reflex", name: "reflexes" },
     { id: "memory", name: "memory" },
-    { id: "knowledge", name: "knowledge" },
-    { id: "puzzle", name: "puzzles" }
+    { id: "attention", name: "attention" },
+    { id: "reasoning", name: "reasoning" },
+    { id: "perception", name: "perception" },
+    { id: "language", name: "language" },
+    { id: "dev", name: "dev brain" }
   ];
+  // presentation-layer grouping into brain faculties (overrides a game's own category)
+  var CAT_OVERRIDE = {
+    guesslang: "dev", regex: "dev", shortcut: "dev", git: "dev", query: "dev",
+    cssduel: "dev", connections: "dev", codemonkey: "dev",
+    colormatch: "perception", hexle: "perception",
+    devle: "language", logicgate: "reasoning", lightsout: "reasoning"
+  };
+  function catOf(g) { return CAT_OVERRIDE[g.id] || g.category; }
 
   function clearGame() {
     if (teardown) { try { teardown(); } catch (e) {} teardown = null; }
@@ -60,13 +71,13 @@
     var html = '<div class="hub-intro"><h1>pick your poison</h1>' +
       '<p>tiny games to test your reflexes, memory, and dev brain. beat your best.</p></div>';
     CATEGORIES.forEach(function (cat) {
-      var inCat = NERDBOX.games.filter(function (g) { return g.category === cat.id; });
+      var inCat = NERDBOX.games.filter(function (g) { return catOf(g) === cat.id; });
       if (!inCat.length) return;
       html += '<section class="hub-section"><h2 class="hub-cat">' + cat.name + "</h2>" +
         '<div class="hub-grid">' + inCat.map(cardHtml).join("") + "</div></section>";
     });
     var other = NERDBOX.games.filter(function (g) {
-      return CATEGORIES.map(function (c) { return c.id; }).indexOf(g.category) < 0;
+      return CATEGORIES.map(function (c) { return c.id; }).indexOf(catOf(g)) < 0;
     });
     if (other.length) {
       html += '<section class="hub-section"><h2 class="hub-cat">more</h2>' +
@@ -94,6 +105,17 @@
     root.className = "game-root";
 
     view.appendChild(head);
+
+    var help = window.NERDBOX_HELP && window.NERDBOX_HELP[id];
+    if (help) {
+      var helpEl = document.createElement("div");
+      helpEl.className = "game-help";
+      helpEl.innerHTML =
+        '<div class="help-how"><span class="help-label">how to play</span>' + help.how + "</div>" +
+        (help.example ? '<div class="help-eg"><span class="help-label eg">example</span>' + help.example + "</div>" : "");
+      view.appendChild(helpEl);
+    }
+
     view.appendChild(root);
 
     var ctx = {
