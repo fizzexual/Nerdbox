@@ -93,6 +93,7 @@ remembered between visits. Plus a link to the sibling project, [Codemonkey](http
 
 ## Track your brain
 
+- **🧠 Brain test** — a guided run through one game per faculty that ends in a **downloadable, shareable PNG card**: a radar of your seven faculties + your overall brain score.
 - **📊 Brain profile** — a radar across the seven faculties showing your relative strengths, with every personal best in one place (the chart icon, top-right).
 - **🗓️ Daily challenge** — a deterministic game-of-the-day with a shareable score.
 - **🔥 Day streak** — keep it alive by playing each day.

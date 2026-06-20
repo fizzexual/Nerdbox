@@ -93,7 +93,7 @@ window.NERDBOX_DASH = (function () {
     })();
 
     var html = '<div class="profile">';
-    html += '<div class="profile-head"><a class="back" href="#/">&lsaquo; all games</a><h1>your brain profile</h1><span></span></div>';
+    html += '<div class="profile-head"><a class="back" href="#/">&lsaquo; all games</a><h1>your brain profile</h1><a class="profile-test" href="#/test">🧠 take the test</a></div>';
     html += '<div class="profile-stats">' +
       stat("🔥 " + NERDBOX.getStreak(), "day streak") +
       stat(NERDBOX.getPlays(), "games played") +
@@ -182,11 +182,198 @@ window.NERDBOX_DASH = (function () {
     setTimeout(function () { btn.textContent = old; }, 1400);
   }
 
+  /* ============================================================
+     BRAIN TEST BATTERY — one game per faculty → profile + PNG card
+     ============================================================ */
+  var BATTERY = [
+    { fac: "reflex", id: "reaction" },
+    { fac: "memory", id: "memory" },
+    { fac: "attention", id: "stroop" },
+    { fac: "reasoning", id: "mathsprint" },
+    { fac: "perception", id: "colormatch" },
+    { fac: "language", id: "anagram" },
+    { fac: "dev", id: "guesslang" }
+  ];
+  function facName(id) { for (var i = 0; i < FACULTIES.length; i++) if (FACULTIES[i].id === id) return FACULTIES[i].name; return id; }
+  function color(v) { return (window.NerdboxThemes ? window.NerdboxThemes.color(v) : "#888"); }
+
+  function startBattery(container) {
+    var step = 0, results = [], captured = null, teardown = null;
+    function cleanup() { if (teardown) { try { teardown(); } catch (e) {} teardown = null; } }
+
+    function mountStep() {
+      cleanup();
+      if (step >= BATTERY.length) { showResult(); return; }
+      var b = BATTERY[step], g = NERDBOX.get(b.id);
+      captured = null;
+      container.innerHTML =
+        '<div class="battery">' +
+          '<div class="battery-head"><a class="back" href="#/">✕ exit</a>' +
+            '<div class="battery-prog">brain test &middot; ' + (step + 1) + " / " + BATTERY.length +
+            '<div class="battery-bar"><span style="width:' + (step / BATTERY.length * 100) + '%"></span></div></div><span></span></div>' +
+          '<div class="battery-gh"><span class="battery-fac">' + facName(b.fac) + '</span>' +
+            '<span class="battery-name">' + esc(g.name) + '</span>' +
+            '<span class="battery-hint">play a round, then hit “next”</span></div>' +
+          '<div class="battery-root" id="battery-root"></div>' +
+          '<div class="battery-foot"><button class="g-btn" id="battery-next">' +
+            (step === BATTERY.length - 1 ? "see results →" : "next →") + "</button></div>" +
+        "</div>";
+      var root = document.getElementById("battery-root");
+      NERDBOX.recordPlay();
+      teardown = g.mount(root, {
+        util: NERDBOX.util,
+        themeColor: color,
+        submitScore: function (v) {
+          captured = (captured == null) ? v : (g.scoreMode === "min" ? Math.min(captured, v) : Math.max(captured, v));
+          return NERDBOX.setBest(g.id, v);
+        }
+      }) || null;
+      document.getElementById("battery-next").addEventListener("click", function () {
+        results.push({ fac: b.fac, score: captured == null ? null : normalize(b.id, captured) });
+        step++; mountStep();
+      });
+    }
+
+    function showResult() {
+      cleanup();
+      var byFac = {}; results.forEach(function (r) { byFac[r.fac] = r.score; });
+      var radar = FACULTIES.map(function (f) { return { name: f.name, score: byFac[f.id] == null ? 0 : byFac[f.id] }; });
+      var played = results.filter(function (r) { return r.score != null; });
+      var overall = played.length ? Math.round(played.reduce(function (a, r) { return a + r.score; }, 0) / played.length) : 0;
+
+      container.innerHTML =
+        '<div class="battery-result">' +
+          '<div class="battery-head"><a class="back" href="#/">✕ close</a><div class="battery-prog">your brain test</div><span></span></div>' +
+          '<canvas id="result-canvas" class="result-canvas" width="1200" height="630"></canvas>' +
+          '<div class="result-actions">' +
+            '<button class="g-btn" id="dl-png">download png</button>' +
+            '<button class="action-btn" id="share-png">share</button>' +
+            '<a class="action-btn" href="#/test">retake</a>' +
+          "</div>" +
+        "</div>";
+      var canvas = document.getElementById("result-canvas");
+      function draw() { drawResultCard(canvas, radar, overall); }
+      draw();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+      document.getElementById("dl-png").addEventListener("click", function () { downloadCanvas(canvas, "nerdbox-brain-test.png"); });
+      document.getElementById("share-png").addEventListener("click", function () { sharePng(canvas, overall); });
+    }
+    mountStep();
+    return cleanup;
+  }
+
+  /* ---------- PNG result card (drawn on canvas) ---------- */
+  function roundRect(ctx, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function dateStr() { try { return new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }); } catch (e) { return ""; } }
+  function drawLogo(ctx, x, y, accent, bg) {
+    var s = 42;
+    ctx.fillStyle = accent; roundRect(ctx, x - s * 0.42, y - s * 0.4, s * 0.84, s * 0.78, s * 0.2); ctx.fill();
+    ctx.strokeStyle = bg; ctx.lineWidth = s * 0.06; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.arc(x - s * 0.16, y + s * 0.05, s * 0.13, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x + s * 0.16, y + s * 0.05, s * 0.13, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x - s * 0.03, y + s * 0.03); ctx.lineTo(x + s * 0.03, y + s * 0.03); ctx.stroke();
+    ctx.fillStyle = bg;
+    ctx.beginPath(); ctx.arc(x - s * 0.16, y + s * 0.05, s * 0.04, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x + s * 0.16, y + s * 0.05, s * 0.04, 0, Math.PI * 2); ctx.fill();
+  }
+  function drawRadarCanvas(ctx, scores, cx, cy, R, accent, sub, subAlt) {
+    var n = scores.length;
+    function pt(i, r) { var a = (-90 + i * 360 / n) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+    ctx.strokeStyle = subAlt; ctx.lineWidth = 1; ctx.globalAlpha = 0.55;
+    [0.25, 0.5, 0.75, 1].forEach(function (f) {
+      ctx.beginPath();
+      for (var i = 0; i < n; i++) { var p = pt(i, R * f); if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]); }
+      ctx.closePath(); ctx.stroke();
+    });
+    for (var i = 0; i < n; i++) { var p = pt(i, R); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p[0], p[1]); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    for (var j = 0; j < n; j++) { var s = Math.max(0, Math.min(100, scores[j].score)); var q = pt(j, R * s / 100); if (j === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]); }
+    ctx.closePath();
+    ctx.fillStyle = accent; ctx.globalAlpha = 0.22; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.strokeStyle = accent; ctx.lineWidth = 2.5; ctx.lineJoin = "round"; ctx.stroke();
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (var k = 0; k < n; k++) {
+      var s2 = Math.max(0, Math.min(100, scores[k].score)); var d = pt(k, R * s2 / 100);
+      ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(d[0], d[1], 4, 0, Math.PI * 2); ctx.fill();
+      var lp = pt(k, R + 26); ctx.fillStyle = sub; ctx.font = '500 17px "Lexend Deca", system-ui, sans-serif';
+      ctx.fillText(scores[k].name, lp[0], lp[1]);
+    }
+    ctx.textAlign = "left";
+  }
+  function drawResultCard(canvas, scores, overall) {
+    var W = 1200, H = 630, ctx = canvas.getContext("2d");
+    var bg = color("--bg"), bgAlt = color("--bg-alt"), accent = color("--accent"), text = color("--text"), sub = color("--sub"), subAlt = color("--sub-alt");
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = accent; ctx.fillRect(0, 0, W, 6);
+
+    // header
+    drawLogo(ctx, 78, 62, accent, bg);
+    ctx.textBaseline = "middle"; ctx.textAlign = "left";
+    ctx.font = '700 38px "Lexend Deca", system-ui, sans-serif';
+    ctx.fillStyle = text; ctx.fillText("nerd", 110, 64);
+    var w1 = ctx.measureText("nerd").width; ctx.fillStyle = accent; ctx.fillText("box", 110 + w1, 64);
+    var w2 = ctx.measureText("box").width; ctx.fillStyle = sub; ctx.font = '400 24px "Lexend Deca", system-ui, sans-serif';
+    ctx.fillText("· brain test", 110 + w1 + w2 + 14, 66);
+    ctx.textAlign = "right"; ctx.font = '400 22px "JetBrains Mono", monospace'; ctx.fillStyle = sub; ctx.fillText(dateStr(), W - 60, 64); ctx.textAlign = "left";
+
+    // radar (left)
+    drawRadarCanvas(ctx, scores, 335, 360, 168, accent, sub, subAlt);
+
+    // right column
+    var rx = 700;
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = sub; ctx.font = '500 24px "Lexend Deca", system-ui, sans-serif'; ctx.fillText("BRAIN SCORE", rx, 162);
+    ctx.fillStyle = accent; ctx.font = '700 132px "JetBrains Mono", monospace'; ctx.fillText(String(overall), rx, 286);
+    var ow = ctx.measureText(String(overall)).width; ctx.fillStyle = sub; ctx.font = '400 40px "JetBrains Mono", monospace'; ctx.fillText("/100", rx + ow + 16, 286);
+
+    ctx.textBaseline = "middle";
+    var ly = 338, lh = 40;
+    scores.forEach(function (s, i) {
+      var y = ly + i * lh;
+      ctx.fillStyle = text; ctx.font = '400 21px "Lexend Deca", system-ui, sans-serif'; ctx.fillText(s.name, rx, y);
+      var bx = rx + 158, bw = 240;
+      ctx.fillStyle = bgAlt; roundRect(ctx, bx, y - 6, bw, 12, 6); ctx.fill();
+      ctx.fillStyle = accent; roundRect(ctx, bx, y - 6, bw * Math.max(0, Math.min(100, s.score)) / 100, 12, 6); ctx.fill();
+      ctx.fillStyle = sub; ctx.font = '500 19px "JetBrains Mono", monospace'; ctx.textAlign = "right"; ctx.fillText(String(s.score), bx + bw + 46, y); ctx.textAlign = "left";
+    });
+
+    ctx.fillStyle = sub; ctx.font = '400 22px "JetBrains Mono", monospace'; ctx.fillText("fizzexual.github.io/Nerdbox", 60, H - 38);
+  }
+  function downloadCanvas(canvas, name) {
+    canvas.toBlob(function (blob) {
+      if (!blob) return;
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a"); a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }, "image/png");
+  }
+  function sharePng(canvas, overall) {
+    canvas.toBlob(function (blob) {
+      if (!blob) return;
+      var text = "My Nerdbox brain score: " + overall + "/100 🧠";
+      try {
+        var file = new File([blob], "nerdbox-brain-test.png", { type: "image/png" });
+        var data = { files: [file], title: "Nerdbox brain test", text: text + " fizzexual.github.io/Nerdbox" };
+        if (navigator.canShare && navigator.canShare(data)) { navigator.share(data).catch(function () {}); return; }
+      } catch (e) {}
+      downloadCanvas(canvas, "nerdbox-brain-test.png");
+    }, "image/png");
+  }
+
   return {
     renderProfile: renderProfile,
     dailyCardHtml: dailyCardHtml,
     dailyGameId: dailyGameId,
     initDaily: initDaily,
-    shareDaily: shareDaily
+    shareDaily: shareDaily,
+    startBattery: startBattery
   };
 })();

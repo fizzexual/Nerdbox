@@ -73,6 +73,7 @@
         CATEGORIES.map(function (c) { return '<button class="hub-chip" data-fac="' + c.id + '">' + c.name + "</button>"; }).join("") +
       "</div>" +
       '<div class="hub-tools">' +
+        '<a class="hub-chip hub-test" href="#/test">🧠 brain test</a>' +
         '<button class="hub-chip" id="hard-toggle">🔥 hard</button>' +
         '<button class="hub-chip" id="random-btn">🎲 surprise me</button>' +
       "</div>" +
@@ -142,6 +143,12 @@
     if (window.NERDBOX_DASH) NERDBOX_DASH.renderProfile(view);
   }
 
+  function renderBattery() {
+    clearGame();
+    document.body.classList.remove("in-game");
+    if (window.NERDBOX_DASH) teardown = NERDBOX_DASH.startBattery(view);
+  }
+
   function updateStreakChip() {
     var el = document.getElementById("streak-chip");
     if (!el) return;
@@ -206,6 +213,7 @@
     var h = (location.hash || "").replace(/^#\/?/, "");
     if (!h) renderHub();
     else if (h === "stats") renderStats();
+    else if (h === "test") renderBattery();
     else openGame(h);
     window.scrollTo(0, 0);
   }
