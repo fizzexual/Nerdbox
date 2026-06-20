@@ -168,6 +168,48 @@ window.NERDBOX_HELP = {
     example: "Click a peg to lift its top disk, click another peg to drop it. Each extra disk doubles the work."
   },
 
+  /* ---- ☠️ extreme tier ---- */
+  triplenback: {
+    how: "Track <b>three</b> streams at once. Each step, flag which match what appeared 2 steps back: <b>A</b> position, <b>S</b> colour, <b>L</b> letter (or the on-screen buttons).",
+    example: "If the cell that lit two steps ago lights again now → tap <b>A</b>. Catch every match across all three streams."
+  },
+  flashanzan: {
+    how: "Numbers flash by one at a time — add them all in your head, then type the total. Each level brings more numbers, bigger, faster.",
+    example: "Flashes <code>34 … 17 … 58</code> → type <code>109</code>."
+  },
+  mot: {
+    how: "Some dots glow as targets, then every dot turns identical and drifts around. When they stop, click the ones that were glowing.",
+    example: "3 of 8 dots glow → they scatter for a few seconds → click those 3. All correct → more dots, faster."
+  },
+  rotate3d: {
+    how: "Two 3D block figures. Decide if the second is the <b>same</b> shape rotated, or its <b>mirror</b>. <b>S</b> = same, <b>M</b> = mirror. As many as you can in 60s.",
+    example: "Rotate the right figure onto the left in your head — if it only lines up by flipping, it's a mirror."
+  },
+  polyrhythm: {
+    how: "Tap two rhythms at once: <b>F</b> for the top lane, <b>J</b> for the bottom. Hit each beat as the playhead crosses it. Levels add trickier ratios.",
+    example: "Top lane = 3 beats per bar, bottom = 4 → your hands tap at different times. Keep ≥75% to advance."
+  },
+  readingspan: {
+    how: "Read each sentence and judge it — <b>T</b> makes sense, <b>F</b> nonsense — while remembering its LAST word. After the set, type those last words in order.",
+    example: "“The hungry cat chased the <b>mouse</b>” → (T), remember <i>mouse</i>… then recall every final word in sequence."
+  },
+  reactionduel: {
+    how: "<b>Two players.</b> Wait for green, then slap your key first — <b>F</b> (left) vs <b>J</b> (right). Press too early and you lose the round. Best of 5.",
+    example: "Screen turns green → whoever taps their key first takes the round."
+  },
+  tugofwar: {
+    how: "<b>Two players.</b> Mash your key to drag the knot to your side — <b>F</b> (left) vs <b>J</b> (right). First to pull it all the way wins.",
+    example: "Hammer F faster than they hammer J and the rope comes to you."
+  },
+  memoryduel: {
+    how: "<b>Two players, take turns.</b> Flip two cards: a match scores a pair and you go again, a miss passes the turn. Most pairs when the board clears wins.",
+    example: "Remember where the ★ was two turns ago → flip its twin for the pair and keep going."
+  },
+  stroopduel: {
+    how: "<b>Two players.</b> P1 owns <b>red</b> (<b>F</b>), P2 owns <b>blue</b> (<b>J</b>). Slap your key only when the INK is your colour — not the word. A wrong slap feeds your rival. First to 10.",
+    example: "The word “GREEN” printed in <b>red</b> ink → only P1 should tap F."
+  },
+
   /* ---- wave 1: hearing, motor, social, spatial ---- */
   pitchmatch: {
     how: "A target tone plays — slide to match its pitch, then submit. (Headphones help.)",

@@ -24,9 +24,9 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 
 ---
 
-## The games — 67 of them, by brain faculty
+## The games — 77 of them, by brain faculty
 
-Games marked 🔥 are the **hard tier**. On the **road to 100** — more coming.
+Games marked 🔥 are the **hard tier** and ☠️ the **extreme tier** — and some extreme ones need **two players** (👥). On the **road to 100** — more coming.
 
 **⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception · Whack · Tap the Colour · Choice Reaction
 
@@ -45,6 +45,8 @@ Games marked 🔥 are the **hard tier**. On the **road to 100** — more coming.
 **🔤 Language** — Devle · Anagram · Word Link · Word or Not · 🔥 Cryptogram
 
 **💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
+
+**☠️ Extreme** — Triple N-Back · Flash Anzan · Multi-Object Tracking · 3D Block Rotation · Polyrhythm Tap · Reading Span · 👥 Reaction Duel · 👥 Tug of War · 👥 Memory Duel · 👥 Stroop Duel
 
 <details>
 <summary>What each one tests</summary>
@@ -118,6 +120,16 @@ Games marked 🔥 are the **hard tier**. On the **road to 100** — more coming.
 | Flash Recall | memory | fast working memory |
 | Sort It | attention | rapid categorization |
 | Choice Reaction | reflex | choice reaction time |
+| ☠️ Triple N-Back | memory | triple-stream working memory (position + colour + letter) |
+| ☠️ Flash Anzan | reasoning | soroban-style flash mental addition |
+| ☠️ Multi-Object Tracking | attention | tracking multiple moving targets at once |
+| ☠️ 3D Block Rotation | perception | mental rotation of 3D figures (same vs mirror) |
+| ☠️ Polyrhythm Tap | motor | two-handed cross-rhythm coordination |
+| ☠️ Reading Span | language | complex working-memory span |
+| ☠️ 👥 Reaction Duel | reflex | 2-player reaction race |
+| ☠️ 👥 Tug of War | motor | 2-player button-mash |
+| ☠️ 👥 Memory Duel | memory | 2-player concentration |
+| ☠️ 👥 Stroop Duel | attention | 2-player go/no-go Stroop |
 
 </details>
 
@@ -127,11 +139,11 @@ remembered between visits. Plus a link to the sibling project, [Codemonkey](http
 
 ## Track your brain
 
-- **🧠 Brain test** — a guided run through one game per faculty that ends in a **downloadable, shareable PNG card**: a radar of your seven faculties + your overall brain score.
-- **📊 Brain profile** — a radar across the seven faculties showing your relative strengths, with every personal best in one place (the chart icon, top-right).
+- **🧠 Brain test** — a guided run through a **random** game from each faculty (fresh every run) that ends in a **downloadable, shareable PNG card**: a radar of your nine faculties + your overall brain score.
+- **📊 Brain profile** — a radar across the nine faculties showing your relative strengths, with every personal best in one place (the chart icon, top-right).
 - **🗓️ Daily challenge** — a deterministic game-of-the-day with a shareable score.
 - **🔥 Day streak** — keep it alive by playing each day.
-- **Find anything** — search, filter by faculty, toggle **🔥 hard only**, or hit **🎲 surprise me** for a random game.
+- **Find anything** — search, filter by faculty, toggle **🔥 hard only** or **☠️ extreme only**, or hit **🎲 surprise me** for a random game.
 
 ## Run it locally
 
@@ -159,7 +171,7 @@ Nerdbox/
     ├── help.js          # how-to-play (description + example) per game
     ├── dashboard.js     # brain-profile radar, faculty scoring, daily challenge
     ├── app.js           # hub + toolbar + hash router + theme wiring
-    └── games/           # one self-registering file per game (37 of them)
+    └── games/           # one self-registering file per game (77 of them)
         ├── reaction.js  aim.js  timeperception.js  …
         ├── memory.js  sequence.js  chimp.js  nback.js  visualmemory.js  verbalmemory.js
         ├── stroop.js  trailmaking.js  gonogo.js

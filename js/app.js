@@ -52,14 +52,17 @@
     }
     var ds = (g.name + " " + g.tagline).toLowerCase().replace(/"/g, "");
     return '<a class="card" href="' + href + '"' + attrs +
-      ' data-search="' + ds + '" data-fac="' + catOf(g) + '" data-hard="' + (g.difficulty === "hard" ? "1" : "0") + '">' +
+      ' data-search="' + ds + '" data-fac="' + catOf(g) + '" data-hard="' + (g.difficulty === "hard" ? "1" : "0") + '" data-extreme="' + (g.difficulty === "extreme" ? "1" : "0") + '">' +
       '<div class="card-icon">' + (g.icon || "") + "</div>" +
       '<div class="card-body">' +
         '<div class="card-name">' + g.name + "</div>" +
         '<div class="card-tag">' + g.tagline + "</div>" +
       "</div>" +
       '<div class="card-foot"><span class="card-best">' + sub + "</span>" +
-        (g.difficulty ? '<span class="card-diff card-diff-' + g.difficulty + '">' + g.difficulty + "</span>" : "") +
+        '<span class="card-badges">' +
+          (g.players === 2 ? '<span class="card-2p">👥 2P</span>' : "") +
+          (g.difficulty ? '<span class="card-diff card-diff-' + g.difficulty + '">' + g.difficulty + "</span>" : "") +
+        "</span>" +
       "</div>" +
       "</a>";
   }
@@ -77,6 +80,7 @@
       '<div class="hub-tools">' +
         '<a class="hub-chip hub-test" href="#/test">🧠 brain test</a>' +
         '<button class="hub-chip" id="hard-toggle">🔥 hard</button>' +
+        '<button class="hub-chip" id="extreme-toggle">☠️ extreme</button>' +
         '<button class="hub-chip" id="random-btn">🎲 surprise me</button>' +
       "</div>" +
     "</div>";
@@ -101,7 +105,7 @@
   }
 
   function wireHubToolbar() {
-    var search = "", fac = "all", hardOnly = false;
+    var search = "", fac = "all", hardOnly = false, extremeOnly = false;
     var searchEl = document.getElementById("hub-search");
     var emptyEl = document.getElementById("hub-empty");
     function apply() {
@@ -112,7 +116,8 @@
           var okS = !search || (c.getAttribute("data-search") || "").indexOf(search) >= 0;
           var okF = fac === "all" || c.getAttribute("data-fac") === fac;
           var okH = !hardOnly || c.getAttribute("data-hard") === "1";
-          var show = okS && okF && okH;
+          var okE = !extremeOnly || c.getAttribute("data-extreme") === "1";
+          var show = okS && okF && okH && okE;
           c.style.display = show ? "" : "none";
           if (show) { secVisible = true; anyVisible = true; }
         });
@@ -131,6 +136,8 @@
     });
     var hardBtn = document.getElementById("hard-toggle");
     if (hardBtn) hardBtn.addEventListener("click", function () { hardOnly = !hardOnly; hardBtn.classList.toggle("active", hardOnly); apply(); });
+    var extremeBtn = document.getElementById("extreme-toggle");
+    if (extremeBtn) extremeBtn.addEventListener("click", function () { extremeOnly = !extremeOnly; extremeBtn.classList.toggle("active", extremeOnly); apply(); });
     var rnd = document.getElementById("random-btn");
     if (rnd) rnd.addEventListener("click", function () {
       var visible = [].slice.call(view.querySelectorAll(".card")).filter(function (c) { return c.style.display !== "none" && (c.getAttribute("href") || "").indexOf("#/") === 0; });

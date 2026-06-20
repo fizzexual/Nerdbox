@@ -19,7 +19,8 @@ window.NERDBOX_DASH = (function () {
     pitchmatch: 10, soundreaction: 250, rhythmecho: 8, steadyhand: 8, pursuit: 80, taptempo: 90, intercept: 10,
     rat: 8, reademotion: 12, maze: 8, angle: 10, bisect: 10, symmetry: 30, numberline: 10, visualsearch: 15, changeblind: 10,
     numcompare: 40, oddeven: 45, snapcount: 15, moredots: 35, flanker: 40, ruleswitch: 30, letterhunt: 25, whack: 25,
-    realword: 35, samediff: 35, tapcolor: 35, quickrecall: 9, sortit: 35, choicereact: 400
+    realword: 35, samediff: 35, tapcolor: 35, quickrecall: 9, sortit: 35, choicereact: 400,
+    triplenback: 70, flashanzan: 10, mot: 7, rotate3d: 15, polyrhythm: 6, readingspan: 6
   };
 
   var FACULTIES = [
@@ -48,12 +49,12 @@ window.NERDBOX_DASH = (function () {
     var byFac = {};
     FACULTIES.forEach(function (f) { byFac[f.id] = { sum: 0, count: 0, total: 0, games: [] }; });
     NERDBOX.games.forEach(function (g) {
-      if (g.external) return;
+      if (g.external || g.multiplayer) return;
       var fac = NERDBOX.facultyOf(g);
       if (!byFac[fac]) return;
       var best = NERDBOX.getBest(g.id);
       byFac[fac].total++;
-      byFac[fac].games.push({ id: g.id, name: g.name, best: best, fmt: best == null ? "—" : g.formatScore(best), hard: g.difficulty === "hard" });
+      byFac[fac].games.push({ id: g.id, name: g.name, best: best, fmt: best == null ? "—" : g.formatScore(best), hard: g.difficulty === "hard", extreme: g.difficulty === "extreme" });
       if (best != null) { byFac[fac].sum += normalize(g.id, best); byFac[fac].count++; }
     });
     return FACULTIES.map(function (f) {
@@ -116,7 +117,7 @@ window.NERDBOX_DASH = (function () {
         '<div class="fac-bar"><span style="width:' + s.score + '%"></span></div>' +
         '<div class="fac-games">';
       s.games.forEach(function (g) {
-        html += '<a class="fac-game" href="#/' + g.id + '"><span class="fg-name">' + esc(g.name) + (g.hard ? ' <i class="fg-hard">hard</i>' : "") +
+        html += '<a class="fac-game" href="#/' + g.id + '"><span class="fg-name">' + esc(g.name) + (g.hard ? ' <i class="fg-hard">hard</i>' : "") + (g.extreme ? ' <i class="fg-extreme">extreme</i>' : "") +
           '</span><span class="fg-best">' + esc(g.fmt) + "</span></a>";
       });
       html += "</div></div>";
@@ -145,7 +146,7 @@ window.NERDBOX_DASH = (function () {
   function dailyGameId() {
     var d = new Date();
     var seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-    var list = NERDBOX.games.filter(function (g) { return !g.external; });
+    var list = NERDBOX.games.filter(function (g) { return !g.external && !g.multiplayer; });
     return list[seed % list.length].id;
   }
   function dailyResult() {
@@ -191,40 +192,43 @@ window.NERDBOX_DASH = (function () {
   /* ============================================================
      BRAIN TEST BATTERY — one game per faculty → profile + PNG card
      ============================================================ */
-  var BATTERY = [
-    { fac: "reflex", id: "reaction" },
-    { fac: "motor", id: "pursuit" },
-    { fac: "memory", id: "memory" },
-    { fac: "attention", id: "stroop" },
-    { fac: "perception", id: "colormatch" },
-    { fac: "hearing", id: "soundreaction" },
-    { fac: "reasoning", id: "mathsprint" },
-    { fac: "language", id: "anagram" },
-    { fac: "dev", id: "guesslang" }
-  ];
+  // Pick one RANDOM eligible game per faculty, fresh each run. Eligible = solo
+  // (not multiplayer), scored (has a TARGET), and not the brutal extreme tier —
+  // so the brain score stays comparable and the test stays approachable.
+  function buildBattery() {
+    return FACULTIES.map(function (f) {
+      var pool = NERDBOX.games.filter(function (g) {
+        return !g.external && !g.multiplayer && g.difficulty !== "extreme" &&
+          TARGETS[g.id] != null && NERDBOX.facultyOf(g) === f.id;
+      });
+      if (!pool.length) return null;
+      return { fac: f.id, id: pool[NERDBOX.util.rand(pool.length)].id };
+    }).filter(Boolean);
+  }
   function facName(id) { for (var i = 0; i < FACULTIES.length; i++) if (FACULTIES[i].id === id) return FACULTIES[i].name; return id; }
   function color(v) { return (window.NerdboxThemes ? window.NerdboxThemes.color(v) : "#888"); }
 
   function startBattery(container) {
+    var battery = buildBattery();
     var step = 0, results = [], captured = null, teardown = null;
     function cleanup() { if (teardown) { try { teardown(); } catch (e) {} teardown = null; } }
 
     function mountStep() {
       cleanup();
-      if (step >= BATTERY.length) { showResult(); return; }
-      var b = BATTERY[step], g = NERDBOX.get(b.id);
+      if (step >= battery.length) { showResult(); return; }
+      var b = battery[step], g = NERDBOX.get(b.id);
       captured = null;
       container.innerHTML =
         '<div class="battery">' +
           '<div class="battery-head"><a class="back" href="#/">✕ exit</a>' +
-            '<div class="battery-prog">brain test &middot; ' + (step + 1) + " / " + BATTERY.length +
-            '<div class="battery-bar"><span style="width:' + (step / BATTERY.length * 100) + '%"></span></div></div><span></span></div>' +
+            '<div class="battery-prog">brain test &middot; ' + (step + 1) + " / " + battery.length +
+            '<div class="battery-bar"><span style="width:' + (step / battery.length * 100) + '%"></span></div></div><span></span></div>' +
           '<div class="battery-gh"><span class="battery-fac">' + facName(b.fac) + '</span>' +
             '<span class="battery-name">' + esc(g.name) + '</span>' +
             '<span class="battery-hint">play a round, then hit “next”</span></div>' +
           '<div class="battery-root" id="battery-root"></div>' +
           '<div class="battery-foot"><button class="g-btn" id="battery-next">' +
-            (step === BATTERY.length - 1 ? "see results →" : "next →") + "</button></div>" +
+            (step === battery.length - 1 ? "see results →" : "next →") + "</button></div>" +
         "</div>";
       var root = document.getElementById("battery-root");
       NERDBOX.recordPlay();
