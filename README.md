@@ -24,19 +24,21 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 
 ---
 
-## The games — 29 of them, by brain faculty
+## The games — 37 of them, by brain faculty
+
+Games marked 🔥 are the **hard tier** — high skill ceilings for when the rest feels too easy.
 
 **⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception
 
-**🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory
+**🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory · 🔥 Dual N-Back · 🔥 Reverse Span
 
-**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go
+**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go · 🔥 Schulte Table
 
-**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out
+**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out · 🔥 Pattern Matrix · 🔥 Mastermind · 🔥 Make 24 · 🔥 Tower of Hanoi
 
 **👁️ Perception** — Color Match · Hexle · Estimate
 
-**🔤 Language** — Devle · Anagram
+**🔤 Language** — Devle · Anagram · 🔥 Cryptogram
 
 **💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
 
@@ -74,6 +76,14 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 | Query Quick | dev | SQL (runs in-browser) |
 | CSS Duel | dev | recreating a CSS shape |
 | Dev Connections | dev | grouping dev terms |
+| 🔥 Dual N-Back | memory | dual-stream working memory |
+| 🔥 Reverse Span | memory | backward digit span |
+| 🔥 Schulte Table | attention | rapid visual search, growing grid |
+| 🔥 Pattern Matrix | reasoning | Raven's-style abstract reasoning |
+| 🔥 Mastermind | reasoning | code-breaking deduction |
+| 🔥 Make 24 | reasoning | combine four numbers to make 24 |
+| 🔥 Tower of Hanoi | reasoning | recursive planning |
+| 🔥 Cryptogram | language | cracking a substitution cipher |
 
 </details>
 

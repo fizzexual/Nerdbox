@@ -61,7 +61,9 @@
         '<div class="card-name">' + g.name + "</div>" +
         '<div class="card-tag">' + g.tagline + "</div>" +
       "</div>" +
-      '<div class="card-foot"><span class="card-best">' + sub + "</span></div>" +
+      '<div class="card-foot"><span class="card-best">' + sub + "</span>" +
+        (g.difficulty ? '<span class="card-diff card-diff-' + g.difficulty + '">' + g.difficulty + "</span>" : "") +
+      "</div>" +
       "</a>";
   }
 

@@ -132,5 +132,39 @@ window.NERDBOX_HELP = {
   connections: {
     how: "Sort the 16 terms into 4 hidden groups of 4. Select four, then submit. Four mistakes and you're out.",
     example: "<code>map · filter · reduce · slice</code> → the group “JS array methods”."
+  },
+
+  /* ---- hard tier ---- */
+  dualnback: {
+    how: "Two streams at once: a tile lights up in the grid <b>and</b> a letter shows. Hit POSITION if the tile is in the same cell as 2 trials ago; hit LETTER if the letter matches 2 trials ago. Either, both, or neither can match.",
+    example: "Tile was top-left two trials ago and it's top-left again now → press <b>POSITION</b>."
+  },
+  schulte: {
+    how: "Find and click the numbers in order — 1, 2, 3 … — as fast as you can. Clear a grid and it grows bigger.",
+    example: "A 5×5 of jumbled 1–25 → click 1, then 2, then 3… up to 25, then it becomes 6×6."
+  },
+  matrix: {
+    how: "The 3×3 grid of shapes follows a hidden rule. Pick the tile that correctly completes the bottom-right cell.",
+    example: "If each row adds one more shape (1, 2, 3…) → choose the option that continues the count."
+  },
+  mastermind: {
+    how: "Crack the hidden 4-colour code by deduction. After each guess: ● = right colour <i>and</i> spot, ○ = right colour, wrong spot. 10 tries.",
+    example: "Feedback ●●○ → two pegs are exactly right, and one more colour is right but in the wrong place."
+  },
+  reversespan: {
+    how: "A number flashes, then hides — type it <b>backwards</b>. One more digit every round.",
+    example: "Shown <code>3 7 1</code> → type <code>173</code>."
+  },
+  make24: {
+    how: "Use all four numbers, each exactly once, with + − × ÷ and parentheses to make exactly 24.",
+    example: "<code>3, 3, 8, 4</code> → <code>(3 + 3) × (8 − 4)</code> = 24."
+  },
+  cryptogram: {
+    how: "Every letter has been swapped for another. Work out the substitution and decode the phrase — one letter is given free.",
+    example: "If <code>X</code> always stands for <code>E</code>, type E under every X and keep deducing."
+  },
+  hanoi: {
+    how: "Move the whole stack to the right peg, one disk at a time — and never place a bigger disk on a smaller one.",
+    example: "Click a peg to lift its top disk, click another peg to drop it. Each extra disk doubles the work."
   }
 };
