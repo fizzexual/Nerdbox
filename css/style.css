@@ -81,6 +81,7 @@ a { color: inherit; text-decoration: none; }
 .card-diff-extreme { color: var(--bg); background: var(--error); border: 1px solid var(--error); font-weight: 700; }
 .card-badges { display: flex; align-items: center; gap: 0.3rem; }
 .card-2p { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.05rem 0.4rem; border-radius: 5px; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); white-space: nowrap; }
+.card-test { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.05rem 0.4rem; border-radius: 5px; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); white-space: nowrap; }
 
 /* ---------- streak chip ---------- */
 .streak-chip { font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: var(--accent); background: var(--bg-alt); border-radius: 20px; padding: 0.25rem 0.6rem; }
@@ -109,6 +110,7 @@ a { color: inherit; text-decoration: none; }
 .hub-chip.active { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 #hard-toggle.active { color: var(--error); border-color: color-mix(in srgb, var(--error) 45%, transparent); }
 #extreme-toggle.active { color: var(--bg); background: var(--error); border-color: var(--error); }
+#test-toggle.active { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .hub-empty { color: var(--sub); text-align: center; padding: 3rem 0; }
 
 /* ---------- brain profile / radar ---------- */
@@ -137,6 +139,7 @@ a { color: inherit; text-decoration: none; }
 .fg-name { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fg-hard { color: var(--error); font-style: normal; font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.5px; }
 .fg-extreme { color: var(--bg); background: var(--error); font-style: normal; font-size: 0.66em; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; padding: 0.02rem 0.32rem; border-radius: 4px; }
+.fg-test { color: var(--accent); font-style: normal; font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.5px; }
 .fg-best { color: var(--accent); font-family: "JetBrains Mono", monospace; flex-shrink: 0; }
 .profile-foot { text-align: center; margin-top: 2rem; }
 .text-danger { background: none; border: none; color: var(--sub); font-size: 0.82rem; }

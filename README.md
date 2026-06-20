@@ -24,9 +24,9 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 
 ---
 
-## The games — 77 of them, by brain faculty
+## 83 games & tests, by brain faculty
 
-Games marked 🔥 are the **hard tier** and ☠️ the **extreme tier** — and some extreme ones need **two players** (👥). On the **road to 100** — more coming.
+Games marked 🔥 are the **hard tier**, ☠️ the **extreme tier**, and 🧪 are proper **cognitive tests** — adaptive, single-score, and mash-proof (random or spammed input can't fake a result). On the **road to 100** — more coming.
 
 **⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception · Whack · Tap the Colour · Choice Reaction
 
@@ -46,7 +46,9 @@ Games marked 🔥 are the **hard tier** and ☠️ the **extreme tier** — and 
 
 **💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
 
-**☠️ Extreme** — Triple N-Back · Flash Anzan · Multi-Object Tracking · 3D Block Rotation · Polyrhythm Tap · Reading Span · 👥 Reaction Duel · 👥 Tug of War · 👥 Memory Duel · 👥 Stroop Duel
+**☠️ Extreme** — Triple N-Back · Flash Anzan · Multi-Object Tracking · 3D Block Rotation · Polyrhythm Tap · Reading Span
+
+**🧪 Cognitive tests** — Corsi Span · Spatial Working Memory · Paired Associates · Vigilance (PVT) · Stop-Signal · Attentional Blink · Motion Sense · Tilt · Gap Detection · Tower of London
 
 <details>
 <summary>What each one tests</summary>
@@ -126,10 +128,16 @@ Games marked 🔥 are the **hard tier** and ☠️ the **extreme tier** — and 
 | ☠️ 3D Block Rotation | perception | mental rotation of 3D figures (same vs mirror) |
 | ☠️ Polyrhythm Tap | motor | two-handed cross-rhythm coordination |
 | ☠️ Reading Span | language | complex working-memory span |
-| ☠️ 👥 Reaction Duel | reflex | 2-player reaction race |
-| ☠️ 👥 Tug of War | motor | 2-player button-mash |
-| ☠️ 👥 Memory Duel | memory | 2-player concentration |
-| ☠️ 👥 Stroop Duel | attention | 2-player go/no-go Stroop |
+| 🧪 Corsi Span | memory | backward spatial span |
+| 🧪 Spatial Working Memory | memory | self-ordered search (Cambridge SWM) |
+| 🧪 Paired Associates | memory | visual associative learning (Cambridge PAL) |
+| 🧪 Vigilance (PVT) | attention | sustained attention / reaction lapses |
+| 🧪 Stop-Signal | attention | response inhibition (SSRT) |
+| 🧪 Attentional Blink | attention | temporal attention (T2 detection) |
+| 🧪 Motion Sense | perception | motion-coherence threshold |
+| 🧪 Tilt | perception | orientation-discrimination threshold |
+| 🧪 Gap Detection | hearing | auditory temporal-gap threshold |
+| 🧪 Tower of London | reasoning | planning / look-ahead |
 
 </details>
 
@@ -143,7 +151,8 @@ remembered between visits. Plus a link to the sibling project, [Codemonkey](http
 - **📊 Brain profile** — a radar across the nine faculties showing your relative strengths, with every personal best in one place (the chart icon, top-right).
 - **🗓️ Daily challenge** — a deterministic game-of-the-day with a shareable score.
 - **🔥 Day streak** — keep it alive by playing each day.
-- **Find anything** — search, filter by faculty, toggle **🔥 hard only** or **☠️ extreme only**, or hit **🎲 surprise me** for a random game.
+- **🧪 Cognitive tests** — 10 standardized, assessment-grade tasks (Corsi span, motion-coherence threshold, stop-signal, etc.) — each adaptive where possible and impossible to game by mashing.
+- **Find anything** — search, filter by faculty, toggle **🧪 tests**, **🔥 hard only** or **☠️ extreme only**, or hit **🎲 surprise me** for a random game.
 
 ## Run it locally
 
@@ -171,7 +180,7 @@ Nerdbox/
     ├── help.js          # how-to-play (description + example) per game
     ├── dashboard.js     # brain-profile radar, faculty scoring, daily challenge
     ├── app.js           # hub + toolbar + hash router + theme wiring
-    └── games/           # one self-registering file per game (77 of them)
+    └── games/           # one self-registering file per game (83 of them)
         ├── reaction.js  aim.js  timeperception.js  …
         ├── memory.js  sequence.js  chimp.js  nback.js  visualmemory.js  verbalmemory.js
         ├── stroop.js  trailmaking.js  gonogo.js

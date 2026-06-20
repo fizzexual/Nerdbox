@@ -52,7 +52,7 @@
     }
     var ds = (g.name + " " + g.tagline).toLowerCase().replace(/"/g, "");
     return '<a class="card" href="' + href + '"' + attrs +
-      ' data-search="' + ds + '" data-fac="' + catOf(g) + '" data-hard="' + (g.difficulty === "hard" ? "1" : "0") + '" data-extreme="' + (g.difficulty === "extreme" ? "1" : "0") + '">' +
+      ' data-search="' + ds + '" data-fac="' + catOf(g) + '" data-hard="' + (g.difficulty === "hard" ? "1" : "0") + '" data-extreme="' + (g.difficulty === "extreme" ? "1" : "0") + '" data-test="' + (g.test ? "1" : "0") + '">' +
       '<div class="card-icon">' + (g.icon || "") + "</div>" +
       '<div class="card-body">' +
         '<div class="card-name">' + g.name + "</div>" +
@@ -60,7 +60,7 @@
       "</div>" +
       '<div class="card-foot"><span class="card-best">' + sub + "</span>" +
         '<span class="card-badges">' +
-          (g.players === 2 ? '<span class="card-2p">👥 2P</span>' : "") +
+          (g.test ? '<span class="card-test">🧪 test</span>' : "") +
           (g.difficulty ? '<span class="card-diff card-diff-' + g.difficulty + '">' + g.difficulty + "</span>" : "") +
         "</span>" +
       "</div>" +
@@ -79,6 +79,7 @@
       "</div>" +
       '<div class="hub-tools">' +
         '<a class="hub-chip hub-test" href="#/test">🧠 brain test</a>' +
+        '<button class="hub-chip" id="test-toggle">🧪 tests</button>' +
         '<button class="hub-chip" id="hard-toggle">🔥 hard</button>' +
         '<button class="hub-chip" id="extreme-toggle">☠️ extreme</button>' +
         '<button class="hub-chip" id="random-btn">🎲 surprise me</button>' +
@@ -105,7 +106,7 @@
   }
 
   function wireHubToolbar() {
-    var search = "", fac = "all", hardOnly = false, extremeOnly = false;
+    var search = "", fac = "all", hardOnly = false, extremeOnly = false, testOnly = false;
     var searchEl = document.getElementById("hub-search");
     var emptyEl = document.getElementById("hub-empty");
     function apply() {
@@ -117,7 +118,8 @@
           var okF = fac === "all" || c.getAttribute("data-fac") === fac;
           var okH = !hardOnly || c.getAttribute("data-hard") === "1";
           var okE = !extremeOnly || c.getAttribute("data-extreme") === "1";
-          var show = okS && okF && okH && okE;
+          var okT = !testOnly || c.getAttribute("data-test") === "1";
+          var show = okS && okF && okH && okE && okT;
           c.style.display = show ? "" : "none";
           if (show) { secVisible = true; anyVisible = true; }
         });
@@ -138,6 +140,8 @@
     if (hardBtn) hardBtn.addEventListener("click", function () { hardOnly = !hardOnly; hardBtn.classList.toggle("active", hardOnly); apply(); });
     var extremeBtn = document.getElementById("extreme-toggle");
     if (extremeBtn) extremeBtn.addEventListener("click", function () { extremeOnly = !extremeOnly; extremeBtn.classList.toggle("active", extremeOnly); apply(); });
+    var testBtn = document.getElementById("test-toggle");
+    if (testBtn) testBtn.addEventListener("click", function () { testOnly = !testOnly; testBtn.classList.toggle("active", testOnly); apply(); });
     var rnd = document.getElementById("random-btn");
     if (rnd) rnd.addEventListener("click", function () {
       var visible = [].slice.call(view.querySelectorAll(".card")).filter(function (c) { return c.style.display !== "none" && (c.getAttribute("href") || "").indexOf("#/") === 0; });

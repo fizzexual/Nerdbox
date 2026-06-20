@@ -41,7 +41,7 @@ NERDBOX.register({
   category: "perception",
   difficulty: "extreme",
   scoreMode: "max",
-  formatScore: function (v) { return v + " correct"; },
+  formatScore: function (v) { return v + " streak"; },
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M12 2v20"/><path d="M3 7l9 5 9-5"/></svg>',
   mount: function (root, ctx) {
     var el = ctx.util.el, rand = ctx.util.rand, shuffle = ctx.util.shuffle;
@@ -59,7 +59,8 @@ NERDBOX.register({
     var flashT = null;       // answer-flash timeout
     var keyHandler = null;   // document keydown listener
     var timeLeft = ROUND;
-    var score = 0;
+    var score = 0;           // best streak this run
+    var streak = 0;          // current consecutive-correct run
     var curMirror = false;   // truth of the trial currently shown
 
     /* ---- integer 90deg rotations (right-handed, all determinant +1) ---- */
@@ -305,7 +306,7 @@ NERDBOX.register({
     /* ---- helpers ---- */
     function setStatus() {
       status.innerHTML =
-        '<span class="gl-score">score ' + score + '</span>' +
+        '<span class="gl-score">streak ' + streak + ' · best ' + score + '</span>' +
         '<span class="gl-time">' + timeLeft + 's</span>';
     }
     function lock(on) {
@@ -357,11 +358,13 @@ NERDBOX.register({
       if (!running || locked) return;
       lock(true);
       if (saidMirror === curMirror) {
-        score++;
-        ctx.submitScore(score);
+        streak++;
+        if (streak > score) { score = streak; ctx.submitScore(score); }
         setStatus();
         flash(true);
       } else {
+        streak = 0;            // a wrong answer breaks the streak — no spam farming
+        setStatus();
         flash(false);
       }
     }
@@ -394,6 +397,7 @@ NERDBOX.register({
       if (flashT) { clearTimeout(flashT); flashT = null; }
       running = true;
       score = 0;
+      streak = 0;
       timeLeft = ROUND;
       wrap.classList.remove("r3d-good", "r3d-bad");
       overlay.classList.remove("show");
@@ -412,7 +416,7 @@ NERDBOX.register({
       showOverlay(
         '<div class="g-result">' +
           '<div class="g-big">' + score + '</div>' +
-          '<div class="g-sub">' + (best ? "new best! · " : "") + 'correct in 60s</div>' +
+          '<div class="g-sub">' + (best ? "new best! · " : "") + 'best streak</div>' +
           '<button class="g-btn">play again</button>' +
         '</div>'
       );

@@ -182,7 +182,7 @@ window.NERDBOX_HELP = {
     example: "3 of 8 dots glow → they scatter for a few seconds → click those 3. All correct → more dots, faster."
   },
   rotate3d: {
-    how: "Two 3D block figures. Decide if the second is the <b>same</b> shape rotated, or its <b>mirror</b>. <b>S</b> = same, <b>M</b> = mirror. As many as you can in 60s.",
+    how: "Two 3D block figures. Decide if the second is the <b>same</b> shape rotated, or its <b>mirror</b>. <b>S</b> = same, <b>M</b> = mirror. Build the longest streak in 60s — one wrong answer resets it.",
     example: "Rotate the right figure onto the left in your head — if it only lines up by flipping, it's a mirror."
   },
   polyrhythm: {
@@ -193,21 +193,47 @@ window.NERDBOX_HELP = {
     how: "Read each sentence and judge it — <b>T</b> makes sense, <b>F</b> nonsense — while remembering its LAST word. After the set, type those last words in order.",
     example: "“The hungry cat chased the <b>mouse</b>” → (T), remember <i>mouse</i>… then recall every final word in sequence."
   },
-  reactionduel: {
-    how: "<b>Two players.</b> Wait for green, then slap your key first — <b>F</b> (left) vs <b>J</b> (right). Press too early and you lose the round. Best of 5.",
-    example: "Screen turns green → whoever taps their key first takes the round."
+
+  /* ---- 🧪 cognitive tests ---- */
+  corsispan: {
+    how: "Watch the squares light up in sequence, then click them back in <b>reverse</b> order. The sequence grows until you miss twice.",
+    example: "Flash ②→④→① → you click ①→④→②. Your score is the longest reversed span."
   },
-  tugofwar: {
-    how: "<b>Two players.</b> Mash your key to drag the knot to your side — <b>F</b> (left) vs <b>J</b> (right). First to pull it all the way wins.",
-    example: "Hammer F faster than they hammer J and the rope comes to you."
+  swm: {
+    how: "Search the boxes for hidden tokens — but never reopen a box that already gave you one. Clear a level by finding all tokens with no repeats; revisit a solved box and the test ends.",
+    example: "Open boxes till you find a token; on the next search, skip every box that already paid out."
   },
-  memoryduel: {
-    how: "<b>Two players, take turns.</b> Flip two cards: a match scores a pair and you go again, a miss passes the turn. Most pairs when the board clears wins.",
-    example: "Remember where the ★ was two turns ago → flip its twin for the pair and keep going."
+  pal: {
+    how: "Boxes open to reveal the patterns hidden inside. Memorise which box held which, then place each pattern back. One more pattern every stage.",
+    example: "★ was top, ◆ was left → when ★ is shown, click the top box."
   },
-  stroopduel: {
-    how: "<b>Two players.</b> P1 owns <b>red</b> (<b>F</b>), P2 owns <b>blue</b> (<b>J</b>). Slap your key only when the INK is your colour — not the word. A wrong slap feeds your rival. First to 10.",
-    example: "The word “GREEN” printed in <b>red</b> ink → only P1 should tap F."
+  pvt: {
+    how: "Wait for the counter to appear, then hit <b>space</b> as fast as you can to stop it. Jumping early is a false start and doesn't count. Score = mean reaction over 14 trials.",
+    example: "Blank… then a number starts climbing → slam space. Lower ms is better."
+  },
+  stopsignal: {
+    how: "Press the arrow's direction fast (<b>F</b> = left, <b>J</b> = right) — but if it turns <b>red</b>, withhold. Measures how fast you can cancel a planned move (SSRT).",
+    example: "→ shows, you start to go right… it flashes red first → freeze. Lower SSRT is better."
+  },
+  blink: {
+    how: "Letters flash by fast. Two <b>digits</b> are hidden among them — report both afterwards. The second is easy to miss right after the first.",
+    example: "…K R <b>7</b> M B <b>2</b> X… → answer 7, then 2."
+  },
+  motioncoh: {
+    how: "Some dots drift together (left or right) while the rest move randomly — call the direction. Fewer dots agree the better you do; score = the hardest level you can read.",
+    example: "Most dots edge rightward → press →. Lower % coherence = sharper motion sense."
+  },
+  tilt: {
+    how: "A pattern of lines flashes, tilted slightly. Which way? <b>F</b> = counter-clockwise, <b>J</b> = clockwise. The tilt shrinks as you improve; score = smallest angle you can call.",
+    example: "Lines lean a hair clockwise → press →/J. Lower degrees = sharper acuity."
+  },
+  gapdetect: {
+    how: "Two sounds play; one has a tiny <b>silent gap</b> in the middle — pick which, ① or ②. The gap shrinks as you improve. (Headphones help.)",
+    example: "Sound ② had a faint hiccup → press ②. Lower ms = sharper temporal hearing."
+  },
+  tol: {
+    how: "Move the balls to match the target in the <b>fewest</b> moves — you get exactly the optimal budget, so plan before you touch anything.",
+    example: "Click a peg to lift its top ball, click another to drop it. Solve within budget to score the problem."
   },
 
   /* ---- wave 1: hearing, motor, social, spatial ---- */

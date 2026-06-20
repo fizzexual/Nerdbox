@@ -20,7 +20,8 @@ window.NERDBOX_DASH = (function () {
     rat: 8, reademotion: 12, maze: 8, angle: 10, bisect: 10, symmetry: 30, numberline: 10, visualsearch: 15, changeblind: 10,
     numcompare: 40, oddeven: 45, snapcount: 15, moredots: 35, flanker: 40, ruleswitch: 30, letterhunt: 25, whack: 25,
     realword: 35, samediff: 35, tapcolor: 35, quickrecall: 9, sortit: 35, choicereact: 400,
-    triplenback: 70, flashanzan: 10, mot: 7, rotate3d: 15, polyrhythm: 6, readingspan: 6
+    triplenback: 70, flashanzan: 10, mot: 7, rotate3d: 8, polyrhythm: 6, readingspan: 6,
+    corsispan: 8, swm: 8, pal: 8, pvt: 250, stopsignal: 250, blink: 80, motioncoh: 8, tilt: 2, gapdetect: 4, tol: 10
   };
 
   var FACULTIES = [
@@ -54,7 +55,7 @@ window.NERDBOX_DASH = (function () {
       if (!byFac[fac]) return;
       var best = NERDBOX.getBest(g.id);
       byFac[fac].total++;
-      byFac[fac].games.push({ id: g.id, name: g.name, best: best, fmt: best == null ? "—" : g.formatScore(best), hard: g.difficulty === "hard", extreme: g.difficulty === "extreme" });
+      byFac[fac].games.push({ id: g.id, name: g.name, best: best, fmt: best == null ? "—" : g.formatScore(best), hard: g.difficulty === "hard", extreme: g.difficulty === "extreme", test: !!g.test });
       if (best != null) { byFac[fac].sum += normalize(g.id, best); byFac[fac].count++; }
     });
     return FACULTIES.map(function (f) {
@@ -117,7 +118,7 @@ window.NERDBOX_DASH = (function () {
         '<div class="fac-bar"><span style="width:' + s.score + '%"></span></div>' +
         '<div class="fac-games">';
       s.games.forEach(function (g) {
-        html += '<a class="fac-game" href="#/' + g.id + '"><span class="fg-name">' + esc(g.name) + (g.hard ? ' <i class="fg-hard">hard</i>' : "") + (g.extreme ? ' <i class="fg-extreme">extreme</i>' : "") +
+        html += '<a class="fac-game" href="#/' + g.id + '"><span class="fg-name">' + esc(g.name) + (g.test ? ' <i class="fg-test">test</i>' : "") + (g.hard ? ' <i class="fg-hard">hard</i>' : "") + (g.extreme ? ' <i class="fg-extreme">extreme</i>' : "") +
           '</span><span class="fg-best">' + esc(g.fmt) + "</span></a>";
       });
       html += "</div></div>";
