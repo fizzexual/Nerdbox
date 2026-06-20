@@ -25,10 +25,12 @@
   /* ---------- hub ---------- */
   var CATEGORIES = [
     { id: "reflex", name: "reflexes" },
+    { id: "motor", name: "motor" },
     { id: "memory", name: "memory" },
     { id: "attention", name: "attention" },
-    { id: "reasoning", name: "reasoning" },
     { id: "perception", name: "perception" },
+    { id: "hearing", name: "hearing" },
+    { id: "reasoning", name: "reasoning" },
     { id: "language", name: "language" },
     { id: "dev", name: "dev brain" }
   ];

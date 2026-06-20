@@ -166,5 +166,71 @@ window.NERDBOX_HELP = {
   hanoi: {
     how: "Move the whole stack to the right peg, one disk at a time — and never place a bigger disk on a smaller one.",
     example: "Click a peg to lift its top disk, click another peg to drop it. Each extra disk doubles the work."
+  },
+
+  /* ---- wave 1: hearing, motor, social, spatial ---- */
+  pitchmatch: {
+    how: "A target tone plays — slide to match its pitch, then submit. (Headphones help.)",
+    example: "Hear the target, drag the slider until your tone sounds the same, hit submit."
+  },
+  soundreaction: {
+    how: "Click the instant you <b>hear</b> the beep — there's no visual cue, just sound.",
+    example: "Silence… <b>beep!</b> → click as fast as you can."
+  },
+  rhythmecho: {
+    how: "Listen to a rhythm, then tap it back with the same timing. It grows each round.",
+    example: "Hear <code>tap·tap—tap</code> → reproduce that spacing on the pad."
+  },
+  steadyhand: {
+    how: "Guide your cursor from start to end without touching the corridor walls.",
+    example: "Ease through the winding path — one touch of a wall and you restart."
+  },
+  pursuit: {
+    how: "Keep your cursor glued to the moving dot for 15 seconds — score is your % on target.",
+    example: "The dot wanders around; stay on it (it glows green while you are)."
+  },
+  taptempo: {
+    how: "Tap a perfectly even beat at any speed. Your score is how consistent the spacing is.",
+    example: "Tap… tap… tap… keep every gap identical for 12 taps."
+  },
+  intercept: {
+    how: "A dot moves, then vanishes mid-flight. Click where it <b>will</b> be — lead it.",
+    example: "It disappears still moving right → click ahead of where it vanished."
+  },
+  rat: {
+    how: "Find the single word that links all three (a compound or strong association).",
+    example: "<code>cottage · swiss · cake</code> → <b>cheese</b>."
+  },
+  reademotion: {
+    how: "Read the face and pick the emotion it's showing.",
+    example: "Raised brows + wide eyes + open mouth → <b>surprised</b>."
+  },
+  maze: {
+    how: "Navigate from the top-left to the exit with the arrow keys. Mazes grow each level.",
+    example: "Use <code>← ↑ → ↓</code> to reach the bottom-right exit, fast."
+  },
+  angle: {
+    how: "Estimate the line's angle in degrees — 0° points right, 90° up, 180° left.",
+    example: "A ray pointing up-left → about <code>135</code>°."
+  },
+  bisect: {
+    how: "Click the exact midpoint of the line — no measuring.",
+    example: "A line stretches across the stage → click dead centre."
+  },
+  symmetry: {
+    how: "Is the pattern left-right mirror-symmetric? Decide fast, for 60 seconds.",
+    example: "The left half mirrors the right → <b>symmetric</b>."
+  },
+  numberline: {
+    how: "Click where the target number belongs on the line.",
+    example: "Line 0–100, target <code>70</code> → click about 70% along."
+  },
+  visualsearch: {
+    how: "Find the one item that's different from all the rest, and click it.",
+    example: "Lots of <code>L</code>s, one <code>T</code> → click the T."
+  },
+  changeblind: {
+    how: "Two grids flicker with a blank between — click the one cell that keeps changing.",
+    example: "Flash… blank… flash → one square swaps colour each time; spot it."
   }
 };

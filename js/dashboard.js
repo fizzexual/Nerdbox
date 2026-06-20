@@ -15,15 +15,19 @@ window.NERDBOX_DASH = (function () {
     colormatch: 15, hexle: 10, estimate: 12,
     devle: 8, anagram: 15,
     guesslang: 20, regex: 7, shortcut: 25, git: 20, query: 5, cssduel: 95, connections: 5,
-    dualnback: 80, schulte: 8, matrix: 12, mastermind: 5, reversespan: 8, make24: 10, cryptogram: 5, hanoi: 7
+    dualnback: 80, schulte: 8, matrix: 12, mastermind: 5, reversespan: 8, make24: 10, cryptogram: 5, hanoi: 7,
+    pitchmatch: 10, soundreaction: 250, rhythmecho: 8, steadyhand: 8, pursuit: 80, taptempo: 90, intercept: 10,
+    rat: 8, reademotion: 12, maze: 8, angle: 10, bisect: 10, symmetry: 30, numberline: 10, visualsearch: 15, changeblind: 10
   };
 
   var FACULTIES = [
     { id: "reflex", name: "reflexes" },
+    { id: "motor", name: "motor" },
     { id: "memory", name: "memory" },
     { id: "attention", name: "attention" },
-    { id: "reasoning", name: "reasoning" },
     { id: "perception", name: "perception" },
+    { id: "hearing", name: "hearing" },
+    { id: "reasoning", name: "reasoning" },
     { id: "language", name: "language" },
     { id: "dev", name: "dev" }
   ];
@@ -187,10 +191,12 @@ window.NERDBOX_DASH = (function () {
      ============================================================ */
   var BATTERY = [
     { fac: "reflex", id: "reaction" },
+    { fac: "motor", id: "pursuit" },
     { fac: "memory", id: "memory" },
     { fac: "attention", id: "stroop" },
-    { fac: "reasoning", id: "mathsprint" },
     { fac: "perception", id: "colormatch" },
+    { fac: "hearing", id: "soundreaction" },
+    { fac: "reasoning", id: "mathsprint" },
     { fac: "language", id: "anagram" },
     { fac: "dev", id: "guesslang" }
   ];

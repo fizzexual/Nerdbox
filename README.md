@@ -24,21 +24,25 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 
 ---
 
-## The games — 37 of them, by brain faculty
+## The games — 53 of them, by brain faculty
 
-Games marked 🔥 are the **hard tier** — high skill ceilings for when the rest feels too easy.
+Games marked 🔥 are the **hard tier**. This is **wave 1 on the road to 100** — more faculties and games are coming.
 
 **⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception
 
+**✋ Motor** — Steady Hand · Pursuit · Steady Beat · Intercept
+
 **🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory · 🔥 Dual N-Back · 🔥 Reverse Span
 
-**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go · 🔥 Schulte Table
+**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go · Visual Search · Spot the Change · 🔥 Schulte Table
 
-**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out · 🔥 Pattern Matrix · 🔥 Mastermind · 🔥 Make 24 · 🔥 Tower of Hanoi
+**👁️ Perception** — Color Match · Hexle · Estimate · Read the Room · Angle Eye · Bisect · Symmetry
 
-**👁️ Perception** — Color Match · Hexle · Estimate
+**🎧 Hearing** — Pitch Match · Sound Reaction · Rhythm Echo
 
-**🔤 Language** — Devle · Anagram · 🔥 Cryptogram
+**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out · Maze · Number Line · 🔥 Pattern Matrix · 🔥 Mastermind · 🔥 Make 24 · 🔥 Tower of Hanoi
+
+**🔤 Language** — Devle · Anagram · Word Link · 🔥 Cryptogram
 
 **💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
 
@@ -84,6 +88,22 @@ Games marked 🔥 are the **hard tier** — high skill ceilings for when the res
 | 🔥 Make 24 | reasoning | combine four numbers to make 24 |
 | 🔥 Tower of Hanoi | reasoning | recursive planning |
 | 🔥 Cryptogram | language | cracking a substitution cipher |
+| Steady Hand | motor | fine motor control / dexterity |
+| Pursuit | motor | smooth-pursuit tracking |
+| Steady Beat | motor | motor timing / rhythm consistency |
+| Intercept | motor | predicting a moving target |
+| Pitch Match | hearing | pitch discrimination |
+| Sound Reaction | hearing | auditory reaction time |
+| Rhythm Echo | hearing | auditory rhythm memory |
+| Read the Room | perception | reading facial emotion |
+| Angle Eye | perception | visual angle estimation |
+| Bisect | perception | line bisection |
+| Symmetry | perception | mirror-symmetry detection |
+| Visual Search | attention | selective attention |
+| Spot the Change | attention | change blindness |
+| Maze | reasoning | spatial navigation |
+| Number Line | reasoning | numerical estimation |
+| Word Link | language | creative word association (RAT) |
 
 </details>
 
