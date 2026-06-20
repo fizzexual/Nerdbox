@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="nerdbox — a playground of skill games for nerds">
+  <defs>
+    <style>
+      .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .sans { font-family: 'Lexend Deca', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="#323437"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#e2b714"/>
+
+  <!-- nerdbox mark -->
+  <g transform="translate(84,92) scale(1.7)">
+    <rect x="8" y="10" width="48" height="44" rx="12" fill="#e2b714"/>
+    <circle cx="24" cy="34" r="8" fill="none" stroke="#323437" stroke-width="3"/>
+    <circle cx="42" cy="34" r="8" fill="none" stroke="#323437" stroke-width="3"/>
+    <line x1="31" y1="33" x2="35" y2="33" stroke="#323437" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="24" cy="34" r="2.6" fill="#323437"/>
+    <circle cx="42" cy="34" r="2.6" fill="#323437"/>
+  </g>
+
+  <text x="86" y="312" class="mono" font-size="104" font-weight="700" letter-spacing="-3">
+    <tspan fill="#d1d0c5">nerd</tspan><tspan fill="#e2b714">box</tspan>
+  </text>
+  <text x="90" y="366" class="sans" font-size="34" fill="#9a9c9f" font-weight="300">a playground of tiny skill games for nerds</text>
+
+  <!-- category chips -->
+  <g class="mono" font-size="22">
+    <rect x="90"  y="420" width="120" height="46" rx="23" fill="#2c2e31"/>
+    <text x="150" y="449" text-anchor="middle" fill="#646669">reflex</text>
+    <rect x="222" y="420" width="132" height="46" rx="23" fill="#2c2e31"/>
+    <text x="288" y="449" text-anchor="middle" fill="#646669">memory</text>
+    <rect x="366" y="420" width="160" height="46" rx="23" fill="#2c2e31"/>
+    <text x="446" y="449" text-anchor="middle" fill="#646669">knowledge</text>
+  </g>
+
+  <text x="90" y="556" class="mono" font-size="24" fill="#e2b714">fizzexual.github.io/Nerdbox</text>
+
+  <!-- game tiles montage (right) -->
+  <g transform="translate(720,150)">
+    <rect x="0"   y="0"   width="150" height="150" rx="18" fill="#2b2d30"/>
+    <rect x="166" y="0"   width="150" height="150" rx="18" fill="#2b2d30"/>
+    <rect x="0"   y="166" width="150" height="150" rx="18" fill="#2b2d30"/>
+    <rect x="166" y="166" width="150" height="150" rx="18" fill="#2b2d30"/>
+    <!-- lightning (reaction) -->
+    <path d="M82 36 L60 80 H78 L72 116 L98 70 H80 L88 36 Z" fill="#e2b714"/>
+    <!-- target (aim) -->
+    <g transform="translate(241,75)" fill="none" stroke="#4caf72" stroke-width="6"><circle r="34"/><circle r="16"/></g>
+    <!-- sequence grid -->
+    <g transform="translate(40,206)"><rect width="30" height="30" rx="6" fill="#e2b714"/><rect x="40" width="30" height="30" rx="6" fill="#4caf72"/><rect y="40" width="30" height="30" rx="6" fill="#ca4754"/><rect x="40" y="40" width="30" height="30" rx="6" fill="#5b9bd5"/></g>
+    <!-- color match -->
+    <g transform="translate(206,206)"><rect width="46" height="46" rx="8" fill="#88c0d0"/><rect x="58" width="46" height="46" rx="8" fill="#88c0d0"/><rect y="58" width="46" height="46" rx="8" fill="#7ab3c4"/><rect x="58" y="58" width="46" height="46" rx="8" fill="#88c0d0"/></g>
+  </g>
+</svg>

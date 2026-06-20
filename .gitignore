@@ -1,0 +1,14 @@
+# Claude Code local dev config
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+.vscode/
+.idea/
+
+# logs / temp
+*.log
+.cache/
