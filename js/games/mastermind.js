@@ -124,6 +124,7 @@ NERDBOX.register({
     inputRow.appendChild(inputPegs);
     var inputFb = el("div", "mastermind-fb", "<i></i><i></i><i></i><i></i>");
     inputRow.appendChild(inputFb);
+    board.appendChild(inputRow);
 
     // palette of colour swatches
     var palette = el("div", "mastermind-palette");

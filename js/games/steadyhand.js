@@ -97,6 +97,7 @@ NERDBOX.register({
     var locked = false;  // true between fail/win and the next build (ignore moves)
     var failTimer = null;
     var listening = false;
+    var rafId = null;    // pending layout-retry frame (must be cancelled on teardown)
 
     function clearFailTimer() { if (failTimer) { clearTimeout(failTimer); failTimer = null; } }
 
@@ -201,9 +202,10 @@ NERDBOX.register({
       var r = stage.getBoundingClientRect();
       var w = r.width, h = r.height;
       if (!w || !h) { // stage not laid out yet — retry next frame
-        requestAnimationFrame(buildLevel);
+        rafId = requestAnimationFrame(buildLevel);
         return;
       }
+      rafId = null;
       buildCorridor(w, h);
       render();
       var lvlEl = document.getElementById("steadyhand-lvl");
@@ -300,6 +302,7 @@ NERDBOX.register({
     return function () {
       if (listening) { stage.removeEventListener("mousemove", onMove); listening = false; }
       clearFailTimer();
+      if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     };
   }
 });

@@ -36,7 +36,7 @@ NERDBOX.register({
     var status = ctx.util.el("div", "g-status", "");
     var stage = ctx.util.el("div", "gl-stage");
     root.appendChild(status); root.appendChild(stage);
-    var score = 0, timeLeft = TIME, ticker = null, cur = null, locked = false;
+    var score = 0, timeLeft = TIME, ticker = null, cur = null, locked = false, nextTimer = null;
 
     function start() {
       score = 0; timeLeft = TIME; locked = false;
@@ -78,7 +78,7 @@ NERDBOX.register({
         o.disabled = true;
       });
       if (k === answer) { score++; updateStatus(); }
-      setTimeout(function () { if (timeLeft > 0) next(); }, 650);
+      nextTimer = setTimeout(function () { if (timeLeft > 0) next(); }, 650);
     }
     function finish() {
       clearInterval(ticker);
@@ -91,6 +91,6 @@ NERDBOX.register({
     status.textContent = "guess the language from a snippet";
     stage.innerHTML = '<button class="g-btn">start</button>';
     stage.querySelector(".g-btn").addEventListener("click", start);
-    return function () { clearInterval(ticker); };
+    return function () { clearInterval(ticker); clearTimeout(nextTimer); };
   }
 });

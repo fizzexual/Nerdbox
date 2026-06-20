@@ -8,7 +8,7 @@ NERDBOX.register({
   formatScore: function (v) { return v + " tiles"; },
   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3M4 12h3M4 17h3"/><path d="M11 5l3 14"/><path d="M20 7l-4 10"/></svg>',
   mount: function (root, ctx) {
-    var TOTAL = 40, N = 4, expecting = 1, hidden = false;
+    var TOTAL = 40, N = 4, expecting = 1, hidden = false, timer = null;
     var status = ctx.util.el("div", "g-status", "");
     var grid = ctx.util.el("div", "chimp-grid");
     var overlay = ctx.util.el("div", "g-overlay");
@@ -60,7 +60,7 @@ NERDBOX.register({
           ctx.submitScore(N);
           N++;
           status.textContent = "nice — next round";
-          setTimeout(layout, 550);
+          timer = setTimeout(layout, 550);
         }
       } else {
         gameOver();
@@ -73,6 +73,6 @@ NERDBOX.register({
 
     status.textContent = "ready?";
     startBtn("start", null, function () { N = 4; layout(); });
-    return function () {};
+    return function () { clearTimeout(timer); };
   }
 });
