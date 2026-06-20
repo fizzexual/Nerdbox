@@ -232,5 +232,63 @@ window.NERDBOX_HELP = {
   changeblind: {
     how: "Two grids flicker with a blank between — click the one cell that keeps changing.",
     example: "Flash… blank… flash → one square swaps colour each time; spot it."
+  },
+
+  /* ---- speed wave ---- */
+  numcompare: {
+    how: "Two numbers appear — tap the bigger one as fast as you can, for 60 seconds.",
+    example: "<code>4821</code> vs <code>4818</code> → tap 4821, quick."
+  },
+  oddeven: {
+    how: "A number flashes — snap-judge it: odd or even? Race the clock.",
+    example: "<code>57</code> → odd · <code>84</code> → even."
+  },
+  snapcount: {
+    how: "A cluster of dots flashes for a split second — tap how many. No time to count.",
+    example: "You glimpse five dots → tap 5."
+  },
+  moredots: {
+    how: "Two clusters flash — tap the side with MORE dots. Trust your gut.",
+    example: "The left blob looks denser → tap left."
+  },
+  flanker: {
+    how: "Respond to the <b>middle</b> arrow's direction — ignore the ones beside it.",
+    example: "→ → ← → → : the middle points left → press Left."
+  },
+  ruleswitch: {
+    how: "The rule flips each trial — answer the COLOUR or the SHAPE as told. Stay flexible.",
+    example: "Banner says SHAPE? + a red triangle → answer triangle (not red)."
+  },
+  letterhunt: {
+    how: "Find and tap the one target letter hidden in the field, as fast as you can.",
+    example: "Find <code>Q</code> in a sea of <code>O</code>s → tap it."
+  },
+  whack: {
+    how: "Bonk the moles as they pop up — they hide fast, and it speeds up. 30 seconds.",
+    example: "A mole appears top-left → click it before it ducks back down."
+  },
+  realword: {
+    how: "Real English word, or made-up gibberish? Decide fast.",
+    example: "<code>cabin</code> → word · <code>brundle</code> → not."
+  },
+  samediff: {
+    how: "Two strings side by side — identical, or different? Snap-judge it.",
+    example: "<code>kdvph</code> vs <code>kdvqh</code> → different (one letter changed)."
+  },
+  tapcolor: {
+    how: "Tap the swatch matching the target colour, fast — the positions shuffle each time.",
+    example: "Target is green → tap the green swatch in the row."
+  },
+  quickrecall: {
+    how: "A number flashes for a blink — type it straight back. One digit longer each round.",
+    example: "Flash <code>5 2 9</code> → type 529."
+  },
+  sortit: {
+    how: "Send each item to the correct side by the rule, as fast as you can.",
+    example: "Rule: odd ⬅ / even ➡ — a 7 appears → send it left."
+  },
+  choicereact: {
+    how: "When a circle lights up, hit its matching key/button instantly. Lowest average time wins.",
+    example: "The top circle flashes → press Up (or tap its button) right away."
   }
 };

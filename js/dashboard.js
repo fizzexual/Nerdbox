@@ -17,7 +17,9 @@ window.NERDBOX_DASH = (function () {
     guesslang: 20, regex: 7, shortcut: 25, git: 20, query: 5, cssduel: 95, connections: 5,
     dualnback: 80, schulte: 8, matrix: 12, mastermind: 5, reversespan: 8, make24: 10, cryptogram: 5, hanoi: 7,
     pitchmatch: 10, soundreaction: 250, rhythmecho: 8, steadyhand: 8, pursuit: 80, taptempo: 90, intercept: 10,
-    rat: 8, reademotion: 12, maze: 8, angle: 10, bisect: 10, symmetry: 30, numberline: 10, visualsearch: 15, changeblind: 10
+    rat: 8, reademotion: 12, maze: 8, angle: 10, bisect: 10, symmetry: 30, numberline: 10, visualsearch: 15, changeblind: 10,
+    numcompare: 40, oddeven: 45, snapcount: 15, moredots: 35, flanker: 40, ruleswitch: 30, letterhunt: 25, whack: 25,
+    realword: 35, samediff: 35, tapcolor: 35, quickrecall: 9, sortit: 35, choicereact: 400
   };
 
   var FACULTIES = [

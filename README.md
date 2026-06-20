@@ -24,25 +24,25 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 
 ---
 
-## The games — 53 of them, by brain faculty
+## The games — 67 of them, by brain faculty
 
-Games marked 🔥 are the **hard tier**. This is **wave 1 on the road to 100** — more faculties and games are coming.
+Games marked 🔥 are the **hard tier**. On the **road to 100** — more coming.
 
-**⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception
+**⚡ Reflexes** — Reaction Time · Aim Trainer · Time Perception · Whack · Tap the Colour · Choice Reaction
 
 **✋ Motor** — Steady Hand · Pursuit · Steady Beat · Intercept
 
-**🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory · 🔥 Dual N-Back · 🔥 Reverse Span
+**🧠 Memory** — Number Memory · Sequence Memory · Chimp Test · N-Back · Visual Memory · Verbal Memory · Flash Recall · 🔥 Dual N-Back · 🔥 Reverse Span
 
-**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go · Visual Search · Spot the Change · 🔥 Schulte Table
+**🎯 Attention** — Stroop Test · Trail Making · Go / No-Go · Visual Search · Spot the Change · Arrow Rush · Switch · Letter Hunt · Sort It · 🔥 Schulte Table
 
-**👁️ Perception** — Color Match · Hexle · Estimate · Read the Room · Angle Eye · Bisect · Symmetry
+**👁️ Perception** — Color Match · Hexle · Estimate · Read the Room · Angle Eye · Bisect · Symmetry · Snap Count · More or Less · Same or Different
 
 **🎧 Hearing** — Pitch Match · Sound Reaction · Rhythm Echo
 
-**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out · Maze · Number Line · 🔥 Pattern Matrix · 🔥 Mastermind · 🔥 Make 24 · 🔥 Tower of Hanoi
+**🧩 Reasoning** — Number Sequence · Mental Rotation · Math Sprint · Gate Match · Lights Out · Maze · Number Line · Bigger Number · Odd or Even · 🔥 Pattern Matrix · 🔥 Mastermind · 🔥 Make 24 · 🔥 Tower of Hanoi
 
-**🔤 Language** — Devle · Anagram · Word Link · 🔥 Cryptogram
+**🔤 Language** — Devle · Anagram · Word Link · Word or Not · 🔥 Cryptogram
 
 **💻 Dev brain** — Guess the Language · Regex Rumble · Shortcut Sensei · Git Gauntlet · Query Quick · CSS Duel · Dev Connections
 
@@ -104,6 +104,20 @@ Games marked 🔥 are the **hard tier**. This is **wave 1 on the road to 100** �
 | Maze | reasoning | spatial navigation |
 | Number Line | reasoning | numerical estimation |
 | Word Link | language | creative word association (RAT) |
+| Bigger Number | reasoning | numerical comparison speed |
+| Odd or Even | reasoning | parity snap-judgement |
+| Snap Count | perception | subitizing speed |
+| More or Less | perception | approximate number sense |
+| Arrow Rush | attention | flanker / selective attention |
+| Switch | attention | task-switching speed |
+| Letter Hunt | attention | visual search speed |
+| Whack | reflex | whack-a-mole reflex |
+| Word or Not | language | lexical-decision speed |
+| Same or Different | perception | rapid comparison |
+| Tap the Colour | reflex | colour-match response time |
+| Flash Recall | memory | fast working memory |
+| Sort It | attention | rapid categorization |
+| Choice Reaction | reflex | choice reaction time |
 
 </details>
 
