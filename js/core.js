@@ -32,9 +32,9 @@ window.NERDBOX = (function () {
     var better = cur === null || (g.scoreMode === "min" ? value < cur : value > cur);
     if (better) {
       try { localStorage.setItem(bestKey(id), String(value)); } catch (e) {}
-      return true;
     }
-    return false;
+    emitScore(id, value, better);
+    return better;
   }
 
   // inject a game's CSS once (keeps each game file self-contained)
@@ -66,6 +66,67 @@ window.NERDBOX = (function () {
     }
   };
 
+  /* ---------- faculties (presentation grouping, shared with app + dashboard) ---------- */
+  var CAT_OVERRIDE = {
+    guesslang: "dev", regex: "dev", shortcut: "dev", git: "dev", query: "dev",
+    cssduel: "dev", connections: "dev", codemonkey: "dev",
+    colormatch: "perception", hexle: "perception",
+    devle: "language", logicgate: "reasoning", lightsout: "reasoning"
+  };
+  function facultyOf(g) { return (g && (CAT_OVERRIDE[g.id] || g.category)) || "other"; }
+
+  /* ---------- score events ---------- */
+  var scoreListeners = [];
+  function onScore(cb) { scoreListeners.push(cb); }
+  function emitScore(id, value, isBest) {
+    for (var i = 0; i < scoreListeners.length; i++) {
+      try { scoreListeners[i](id, value, isBest); } catch (e) {}
+    }
+  }
+
+  /* ---------- play streak + aggregate stats ---------- */
+  var PLAY_KEY = "nerdbox-play";
+  function dayStr(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function loadPlay() { try { return JSON.parse(localStorage.getItem(PLAY_KEY)) || {}; } catch (e) { return {}; } }
+  function recordPlay() {
+    try {
+      var p = loadPlay();
+      var today = dayStr(new Date());
+      var yest = dayStr(new Date(Date.now() - 86400000));
+      if (p.last !== today) {
+        p.streak = (p.last === yest) ? (p.streak || 0) + 1 : 1;
+        p.last = today;
+      }
+      p.plays = (p.plays || 0) + 1;
+      localStorage.setItem(PLAY_KEY, JSON.stringify(p));
+    } catch (e) {}
+  }
+  function getStreak() {
+    var p = loadPlay();
+    var today = dayStr(new Date()), yest = dayStr(new Date(Date.now() - 86400000));
+    return (p.last === today || p.last === yest) ? (p.streak || 0) : 0;
+  }
+  function getPlays() { return loadPlay().plays || 0; }
+
+  function getAllBests() {
+    var out = [];
+    for (var i = 0; i < games.length; i++) {
+      if (games[i].external) continue;
+      out.push({ id: games[i].id, best: getBest(games[i].id) });
+    }
+    return out;
+  }
+  function clearAllData() {
+    try {
+      var keys = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && (k.indexOf("nerdbox-best-") === 0 || k === PLAY_KEY || k.indexOf("nerdbox-daily") === 0)) keys.push(k);
+      }
+      keys.forEach(function (k) { localStorage.removeItem(k); });
+    } catch (e) {}
+  }
+
   return {
     games: games,
     register: register,
@@ -73,6 +134,13 @@ window.NERDBOX = (function () {
     getBest: getBest,
     setBest: setBest,
     injectStyle: injectStyle,
-    util: util
+    util: util,
+    facultyOf: facultyOf,
+    onScore: onScore,
+    recordPlay: recordPlay,
+    getStreak: getStreak,
+    getPlays: getPlays,
+    getAllBests: getAllBests,
+    clearAllData: clearAllData
   };
 })();

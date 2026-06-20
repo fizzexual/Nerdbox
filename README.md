@@ -91,6 +91,13 @@ Every game opens with a **how-to-play** (a one-line description + a worked examp
 **personal best** locally (in `localStorage`, private to your device), and themes itself — 7 palettes,
 remembered between visits. Plus a link to the sibling project, [Codemonkey](https://fizzexual.github.io/Codemonkey/).
 
+## Track your brain
+
+- **📊 Brain profile** — a radar across the seven faculties showing your relative strengths, with every personal best in one place (the chart icon, top-right).
+- **🗓️ Daily challenge** — a deterministic game-of-the-day with a shareable score.
+- **🔥 Day streak** — keep it alive by playing each day.
+- **Find anything** — search, filter by faculty, toggle **🔥 hard only**, or hit **🎲 surprise me** for a random game.
+
 ## Run it locally
 
 It's a static site — nothing to install or build.
@@ -113,10 +120,11 @@ Nerdbox/
 ├── css/style.css        # design system + the core games' UI
 └── js/
     ├── themes.js        # theme registry
-    ├── core.js          # game registry + best-score storage + injectStyle()
+    ├── core.js          # game registry, best scores, faculties, play streak, stats
     ├── help.js          # how-to-play (description + example) per game
-    ├── app.js           # hub + hash router + theme wiring + how-to-play
-    └── games/           # one self-registering file per game (29 of them)
+    ├── dashboard.js     # brain-profile radar, faculty scoring, daily challenge
+    ├── app.js           # hub + toolbar + hash router + theme wiring
+    └── games/           # one self-registering file per game (37 of them)
         ├── reaction.js  aim.js  timeperception.js  …
         ├── memory.js  sequence.js  chimp.js  nback.js  visualmemory.js  verbalmemory.js
         ├── stroop.js  trailmaking.js  gonogo.js
