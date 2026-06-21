@@ -152,6 +152,9 @@ remembered between visits. Plus a link to the sibling project, [Codemonkey](http
 - **🗓️ Daily challenge** — a deterministic game-of-the-day with a shareable score.
 - **🔥 Day streak** — keep it alive by playing each day.
 - **🧪 Cognitive tests** — 10 standardized, assessment-grade tasks (Corsi span, motion-coherence threshold, stop-signal, etc.) — each adaptive where possible and impossible to game by mashing.
+- **🏆 Achievements** — 15 unlockable badges (milestones, streaks, faculty coverage, personal-best counts) in a trophy case, with a pop-up toast when you earn one.
+- **🎉 Juice** — a confetti burst + sound cue every time you beat a personal best, with a **🔊 mute toggle** in the nav (respects reduced-motion).
+- **⌨️ Shortcuts** — `/` search · `r` random · `t` brain test · `p` profile · `a` achievements · `?` for the full cheatsheet.
 - **Find anything** — search, filter by faculty, toggle **🧪 tests**, **🔥 hard only** or **☠️ extreme only**, or hit **🎲 surprise me** for a random game.
 
 ## Run it locally

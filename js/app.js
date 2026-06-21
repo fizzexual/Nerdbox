@@ -162,6 +162,12 @@
     if (window.NERDBOX_DASH) teardown = NERDBOX_DASH.startBattery(view);
   }
 
+  function renderAchievements() {
+    clearGame();
+    document.body.classList.remove("in-game");
+    if (window.NERDBOX_ACH) NERDBOX_ACH.renderPage(view);
+  }
+
   function updateStreakChip() {
     var el = document.getElementById("streak-chip");
     if (!el) return;
@@ -227,6 +233,7 @@
     if (!h) renderHub();
     else if (h === "stats") renderStats();
     else if (h === "test") renderBattery();
+    else if (h === "achievements") renderAchievements();
     else openGame(h);
     window.scrollTo(0, 0);
   }
