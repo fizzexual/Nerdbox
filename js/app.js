@@ -7,6 +7,7 @@
   var Themes = window.NerdboxThemes;
   var view = document.getElementById("view");
   var teardown = null;
+  var currentGameId = null;
 
   /* ---------- theme ---------- */
   function initTheme() {
@@ -37,6 +38,8 @@
   function catOf(g) { return NERDBOX.facultyOf(g); }
 
   function clearGame() {
+    NERDBOX.stopTime();
+    currentGameId = null;
     if (teardown) { try { teardown(); } catch (e) {} teardown = null; }
     view.innerHTML = "";
   }
@@ -184,6 +187,8 @@
     NERDBOX.recordPlay();
     updateStreakChip();
     document.body.classList.add("in-game");
+    currentGameId = id;
+    NERDBOX.startTime(id);
 
     var head = document.createElement("div");
     head.className = "game-head";
@@ -191,7 +196,10 @@
     head.innerHTML =
       '<a class="back" href="#/">&lsaquo; all games</a>' +
       '<div class="game-title">' + g.name + "</div>" +
-      '<div class="game-best" id="game-best">best&nbsp;<b>' + (best === null ? "—" : g.formatScore(best)) + "</b></div>";
+      '<div class="game-meta">' +
+        '<div class="game-best" id="game-best">best&nbsp;<b>' + (best === null ? "—" : g.formatScore(best)) + "</b></div>" +
+        '<div class="game-time">⏱ ' + NERDBOX.util.fmtTime(NERDBOX.getGamePlaytime(id)) + "</div>" +
+      "</div>";
 
     var root = document.createElement("div");
     root.className = "game-root";
@@ -242,6 +250,11 @@
     initTheme();
     if (window.NERDBOX_DASH) NERDBOX_DASH.initDaily();
     updateStreakChip();
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) NERDBOX.stopTime();
+      else if (currentGameId && document.body.classList.contains("in-game")) NERDBOX.startTime(currentGameId);
+    });
+    window.addEventListener("beforeunload", function () { NERDBOX.stopTime(); });
     window.addEventListener("hashchange", route);
     route();
   }

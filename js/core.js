@@ -63,6 +63,16 @@ window.NERDBOX = (function () {
         var t = a[i]; a[i] = a[j]; a[j] = t;
       }
       return a;
+    },
+    fmtTime: function (ms) {
+      var s = Math.floor((ms || 0) / 1000);
+      if (s < 60) return s + "s";
+      var m = Math.floor(s / 60);
+      if (m < 60) return m + "m";
+      var h = Math.floor(m / 60); m = m % 60;
+      if (h < 24) return h + "h" + (m ? " " + m + "m" : "");
+      var d = Math.floor(h / 24); h = h % 24;
+      return d + "d" + (h ? " " + h + "h" : "");
     }
   };
 
@@ -108,6 +118,27 @@ window.NERDBOX = (function () {
   }
   function getPlays() { return loadPlay().plays || 0; }
 
+  /* ---------- playtime (time spent inside games) ---------- */
+  var TIME_KEY = "nerdbox-time";
+  var ptStart = 0, ptId = null;
+  function loadTime() { try { return JSON.parse(localStorage.getItem(TIME_KEY)) || { total: 0, games: {} }; } catch (e) { return { total: 0, games: {} }; } }
+  function startTime(id) { stopTime(); ptId = id; ptStart = Date.now(); }
+  function stopTime() {
+    if (ptStart && ptId) {
+      var dt = Date.now() - ptStart;
+      if (dt > 0 && dt < 21600000) { // ignore >6h spans (tab left open / AFK)
+        var t = loadTime();
+        if (!t.games) t.games = {};
+        t.total = (t.total || 0) + dt;
+        t.games[ptId] = (t.games[ptId] || 0) + dt;
+        try { localStorage.setItem(TIME_KEY, JSON.stringify(t)); } catch (e) {}
+      }
+    }
+    ptStart = 0; ptId = null;
+  }
+  function getPlaytime() { return loadTime().total || 0; }
+  function getGamePlaytime(id) { var g = loadTime().games || {}; return g[id] || 0; }
+
   function getAllBests() {
     var out = [];
     for (var i = 0; i < games.length; i++) {
@@ -121,7 +152,7 @@ window.NERDBOX = (function () {
       var keys = [];
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
-        if (k && (k.indexOf("nerdbox-best-") === 0 || k === PLAY_KEY || k.indexOf("nerdbox-daily") === 0)) keys.push(k);
+        if (k && (k.indexOf("nerdbox-best-") === 0 || k === PLAY_KEY || k === TIME_KEY || k.indexOf("nerdbox-daily") === 0 || k === "nerdbox-ach" || k === "nerdbox-pbcount")) keys.push(k);
       }
       keys.forEach(function (k) { localStorage.removeItem(k); });
     } catch (e) {}
@@ -140,6 +171,10 @@ window.NERDBOX = (function () {
     recordPlay: recordPlay,
     getStreak: getStreak,
     getPlays: getPlays,
+    startTime: startTime,
+    stopTime: stopTime,
+    getPlaytime: getPlaytime,
+    getGamePlaytime: getGamePlaytime,
     getAllBests: getAllBests,
     clearAllData: clearAllData
   };

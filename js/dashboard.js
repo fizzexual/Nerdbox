@@ -107,6 +107,7 @@ window.NERDBOX_DASH = (function () {
       stat(NERDBOX.getPlays(), "games played") +
       stat(tried + "/" + totalGames, "games tried") +
       stat(overall + "%", "overall") +
+      stat(NERDBOX.util.fmtTime(NERDBOX.getPlaytime()), "playtime") +
       "</div>";
 
     html += '<div class="profile-radar">' + radarSvg(scores) + "</div>";

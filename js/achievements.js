@@ -78,6 +78,7 @@ window.NERDBOX_ACH = (function () {
 
     s.plays = NERDBOX.getPlays();
     s.streak = NERDBOX.getStreak();
+    s.playtime = NERDBOX.getPlaytime ? NERDBOX.getPlaytime() : 0;
 
     // total = number of non-external registered games
     var games = NERDBOX.games || [];
@@ -155,6 +156,12 @@ window.NERDBOX_ACH = (function () {
     { id: "plays100", name: "Addicted", icon: "💯",
       desc: "Play 100 games in total.",
       check: function (s) { return s.plays >= 100; } },
+    { id: "time30", name: "Time Well Spent", icon: "⏱️",
+      desc: "Spend 30 minutes in the box.",
+      check: function (s) { return s.playtime >= 1800000; } },
+    { id: "time5h", name: "No Off Switch", icon: "⏳",
+      desc: "Spend 5 hours in the box, total.",
+      check: function (s) { return s.playtime >= 18000000; } },
     { id: "fastreflex", name: "Lightning Reflexes", icon: "⚡",
       desc: "Score 250 ms or faster on Reaction Time.",
       check: function () { var b = best("reaction"); return b != null && b <= 250; } },
