@@ -2,7 +2,7 @@
 
 <img src="https://fizzexual.github.io/Nerdbox/og-image.svg" alt="nerdbox — a playground of skill games for nerds" width="100%" />
 
-# 🤓 nerdbox
+# 🤓 nerdbox 🍂
 
 **A playground of brain-testing mini-games** — reflexes, working memory, attention,
 reasoning, spatial sense, perception, language, and dev knowledge. Jump in, see how sharp
@@ -21,6 +21,12 @@ you actually are, and beat your best. Every game has a quick how-to-play. No sig
 ⭐ **If you enjoy it, a star helps a lot** — I'm a student, and it genuinely makes a difference.
 
 </div>
+
+---
+
+## About
+
+Nerdbox is a collection of short browser games and cognitive tests for people who like checking their reaction time, memory, attention and reasoning. It is a static vanilla JavaScript site with no backend; scores, streaks and achievements are stored in the browser. Status: working and live on GitHub Pages, with new games still being added.
 
 ---
 
